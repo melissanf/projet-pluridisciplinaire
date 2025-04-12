@@ -21,7 +21,6 @@ function App() {
         <Route path="/signup" element={<Signup />} />
 
         {/* ✅ Page Alertes */}
-        
         <Route path="/alerts" element={<Alerts />} />
       </Routes>
     </AnimatePresence>
@@ -29,3 +28,5 @@ function App() {
 }
 
 export default App;
+
+
