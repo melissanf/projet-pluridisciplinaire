@@ -1,0 +1,45 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.header h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  padding: 8px 12px;
+  width: 250px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 4px #e3e3e3 inset;
+}
+   header jsx 
+
+
+.button-blue {
+  background-color: #b2d4f0;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.button-outline {
+  padding: 8px 16px;
+  border: 1px solid #555;
+  border-radius: 8px;
+  background-color: white;
+  cursor: pointer;
+}

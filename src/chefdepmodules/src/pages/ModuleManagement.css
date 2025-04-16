@@ -1,0 +1,176 @@
+/* Reset de base */
+body {
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+  background-color: #f9f9f9;
+}
+
+/* Conteneur général */
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ----- Sidebar (agrandie) ----- */
+.sidebar {
+  width: 250px;
+  background-color: #e1f0ff; 
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ----- Contenu principal ----- */
+.main {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.main h2 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #1e3a8a;
+  margin-bottom: 30px;
+}
+
+/* ----- Barre de recherche + boutons ----- */
+.top-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 16px;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 300px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.search-input {
+  padding: 10px 14px 10px 38px; /* espace pour l’icône */
+  width: 100%;
+  border-radius: 9999px;
+  border: 1px solid #ccc;
+  box-shadow: inset 1px 1px 4px #e3e3e3;
+  background-color: #f0f9ff;
+  outline: none;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+}
+
+.button-blue {
+  background-color: #dbeafe;
+  color: #1e3a8a;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 9999px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button-blue:hover {
+  background-color: #bfdbfe;
+}
+
+.button-outline {
+  padding: 10px 18px;
+  border: 1px solid #9ca3af;
+  border-radius: 9999px;
+  background-color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button-outline:hover {
+  background-color: #f3f4f6;
+}
+
+/* Tableau */
+.module-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.module-table thead {
+  background-color: #eff6ff;
+}
+
+.module-table th,
+.module-table td {
+  border-bottom: 0.5px solid #e5e7eb; /* ligne fine */
+  padding: 14px 18px;
+  text-align: left;
+  background-color: white;
+}
+
+.module-table thead th {
+  font-weight: 600;
+  color: #1e3a8a;
+  font-size: 20px;
+}
+
+.module-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.module-table tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* Bouton échange */
+.exchange-btn {
+  padding: 8px 14px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.exchange-btn:hover {
+  background-color: #388e3c;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.pagination button {
+  padding: 8px 14px;
+  border: 1px solid #d1d5db;
+  background-color: white;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.pagination button:hover {
+  background-color: #e5e7eb;
+}
