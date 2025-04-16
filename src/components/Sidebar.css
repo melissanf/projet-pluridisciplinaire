@@ -21,6 +21,19 @@
   height: 100%; /* Maintain aspect ratio */
 }
 
+/* Affichage du rôle de l'utilisateur */
+.role-display {
+  margin-top: 30px; /* Ajustez l'espacement si nécessaire */
+  padding: 10px;
+  background-color: #d0e7ff;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  font-size: 1rem;
+  margin-top:-180px;
+  margin-bottom: 150px;
+}
 /* Menu */
 .menu {
   display: flex;
@@ -52,6 +65,8 @@
   border-radius: 50%;
   margin-left: auto;
 }
+
+
 
 /* Déconnexion */
 .logout {

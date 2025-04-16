@@ -1,7 +1,7 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // ✅ Import de useNavigate
-import PageWrapper from '../components/PageWrapper'; // ✅ Import du wrapper animé
-import { motion } from 'framer-motion'; // ✅ Animation
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import PageWrapper from '../components/PageWrapper';
+import { motion } from 'framer-motion';
 import './login.css';
 import logo from '../assets/eduorg.logo.png';
 import illustration from '../assets/Design sans titre (1).png';
@@ -9,12 +9,45 @@ import illustration from '../assets/Design sans titre (1).png';
 export default function LoginPage() {
   const navigate = useNavigate();
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
   // Redirection vers la page d'inscription
   const handleSignupClick = () => {
     navigate('/signup');
   };
 
- 
+  // 🔐 Simulation de login
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // 💡 Remplace cette partie avec un vrai appel API
+      // Simulons une réponse
+      const fakeUsersDB = {
+        'chef@example.com': { password: '1234', role: 'chef' },
+        'staff@example.com': { password: '1234', role: 'enseignant' },
+        'admin@example.com': { password: '1234', role: 'admin' },
+      };
+
+      const user = fakeUsersDB[email];
+
+      if (!user || user.password !== password) {
+        setErrorMessage("Email ou mot de passe invalide");
+        return;
+      }
+
+      // ✅ Enregistrement du rôle dans localStorage
+      localStorage.setItem('userRole', user.role);
+
+      // ✅ Redirection vers la page Modules
+      navigate('/modules');
+    } catch (err) {
+      console.error(err);
+      setErrorMessage("Une erreur est survenue.");
+    }
+  };
 
   return (
     <PageWrapper>
@@ -25,48 +58,46 @@ export default function LoginPage() {
         exit={{ opacity: 0, x: -50 }}
         transition={{ duration: 0.5 }}
       >
-
-        {/* Partie gauche : formulaire de connexion */}
         <div className="login-left">
-          <form className="login-form">
-
-            {/* Logo de l'application */}
+          <form className="login-form" onSubmit={handleLoginSubmit}>
             <img src={logo} alt="EduOrg Logo" className="login-logo" />
-
-            {/* Titre du formulaire */}
             <h2 className="login-title">Se connecter</h2>
 
-            {/* Champ Email */}
+            {errorMessage && (
+              <div className="error-message">{errorMessage}</div>
+            )}
+
             <div className="form-group">
               <label htmlFor="email" className="form-label">Adresse email</label>
-              <input 
-                type="email" 
-                id="email" 
-                placeholder="Entrer votre adresse email" 
-                className="form-input" 
-                required 
+              <input
+                type="email"
+                id="email"
+                placeholder="Entrer votre adresse email"
+                className="form-input"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
-            {/* Champ Mot de passe */}
             <div className="form-group">
               <label htmlFor="password" className="form-label">Mot de passe</label>
-              <input 
-                type="password" 
-                id="password" 
-                placeholder="Entrer votre mot de passe" 
-                className="form-input" 
-                required 
+              <input
+                type="password"
+                id="password"
+                placeholder="Entrer votre mot de passe"
+                className="form-input"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
-            {/* Checkbox "Se souvenir de moi" */}
             <div className="checkbox-container custom-checkbox">
               <input type="checkbox" id="remember" />
               <label htmlFor="remember">Se souvenir de moi</label>
             </div>
 
-            {/* Boutons : connexion & redirection inscription */}
             <div className="button-group">
               <button type="submit" className="login-button blue-button">
                 Se connecter
@@ -78,15 +109,13 @@ export default function LoginPage() {
           </form>
         </div>
 
-        {/* Partie droite : image d'illustration */}
         <div className="login-right">
-          <img 
-            src={illustration} 
-            alt="Illustration de connexion" 
-            className="login-image" 
+          <img
+            src={illustration}
+            alt="Illustration de connexion"
+            className="login-image"
           />
         </div>
-
       </motion.div>
     </PageWrapper>
   );

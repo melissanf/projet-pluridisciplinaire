@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -7,6 +7,7 @@ import Signup from './signup/signup';
 import Login from './login/login';
 import Alerts from './AlertPage/alerts';
 import ModuleManagement from './pages/ModuleManagement';
+import Sidebar from './components/Sidebar'; // Assurez-vous que Sidebar est importé ici si vous l'affichez globalement
 
 // 🎬 Wrapper pour animer les transitions de page
 const PageWrapper = ({ children }) => {
@@ -24,14 +25,23 @@ const PageWrapper = ({ children }) => {
 
 const App = () => {
   const location = useLocation();
+  const [role, setRole] = useState('');
+
+  useEffect(() => {
+    const storedRole = localStorage.getItem('userRole') || 'chef departement';
+    setRole(storedRole);
+  }, []);
+
+  const handleRoleChange = (newRole) => {
+    localStorage.setItem('userRole', newRole);
+    setRole(newRole);
+  };
 
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        {/* Redirection par défaut vers /login */}
         <Route path="/" element={<Navigate to="/login" replace />} />
 
-        {/* Page de connexion */}
         <Route
           path="/login"
           element={
@@ -41,7 +51,6 @@ const App = () => {
           }
         />
 
-        {/* Page d'inscription */}
         <Route
           path="/signup"
           element={
@@ -51,7 +60,6 @@ const App = () => {
           }
         />
 
-        {/* Page des alertes */}
         <Route
           path="/alerts"
           element={
@@ -61,12 +69,12 @@ const App = () => {
           }
         />
 
-        {/* Page de gestion des modules */}
         <Route
           path="/modules"
           element={
             <PageWrapper>
-              <ModuleManagement />
+              {/* ⬇️ Passer le rôle et le setter */}
+              <ModuleManagement role={role} onRoleChange={handleRoleChange} />
             </PageWrapper>
           }
         />
