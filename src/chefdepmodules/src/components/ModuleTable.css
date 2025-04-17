@@ -1,0 +1,53 @@
+.module-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .module-table th,
+  .module-table td {
+    border: 0.5px solid #ccc; /* ligne plus fine */
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .module-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+  }
+  
+  .module-table th:nth-child(1) {
+    min-width: 180px;
+  }
+  
+  .module-table th:nth-child(2) {
+    min-width: 220px;
+  }
+  
+  .module-table th:nth-child(3) {
+    min-width: 120px;
+  }
+  
+  .module-table th:nth-child(4) {
+    min-width: 220px;
+  }
+  
+  .module-table tbody tr:hover {
+    background-color: #f0f8ff;
+  }
+  
+  .exchange-btn {
+    padding: 6px 12px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .exchange-btn:hover {
+    background-color: #388e3c;
+  }
+  

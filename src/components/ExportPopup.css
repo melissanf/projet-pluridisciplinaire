@@ -1,0 +1,50 @@
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+  }
+  
+  .popup-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .button-excel {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .button-pdf {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .button-close {
+    background-color: #bbb;
+    color: white;
+    margin-top: 10px;
+  }
+  
