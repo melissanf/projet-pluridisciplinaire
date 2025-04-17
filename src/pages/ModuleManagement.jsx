@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import ModuleTable from '../components/ModuleTable';
 import Pagination from '../components/Pagination';
 import Popup from '../components/Popup';
-import ExportPopup from '../components/ExportPopup';  // Import ExportPopup
+import ExportPopup from '../components/ExportPopup';
 import './ModuleManagement.css';
 
 const ModuleManagement = () => {
+  // Manually set the role for testing
+  const [role, setRole] = useState('chef departement');  // Change this to test different roles(pour tester brk )
+
   const [modules, setModules] = useState([
     { nom: 'Programmation web', specialite: 'Informatique', semestre: 'S3', enseignant: 'Sara Bouzid' },
     { nom: 'Probabilités', specialite: 'Mathématiques', semestre: 'S3', enseignant: 'Rami Benaissa' },
@@ -19,7 +22,7 @@ const ModuleManagement = () => {
   const [searchValue, setSearchValue] = useState('');
   const [isAdding, setIsAdding] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [showExportPopup, setShowExportPopup] = useState(false);  // Show popup for export
+  const [showExportPopup, setShowExportPopup] = useState(false);
 
   const itemsPerPage = 3;
 
@@ -34,13 +37,21 @@ const ModuleManagement = () => {
   );
 
   const handleEdit = (module) => {
-    setSelectedModule(module);
-    setIsAdding(false);
+    if (role === 'chef departement') {
+      setSelectedModule(module);
+      setIsAdding(false);
+    } else {
+      alert("Vous n'avez pas la permission de modifier ce module.");
+    }
   };
 
   const handleAdd = () => {
-    setSelectedModule({ nom: '', specialite: '', semestre: '', enseignant: '' });
-    setIsAdding(true);
+    if (role === 'chef departement') {
+      setSelectedModule({ nom: '', specialite: '', semestre: '', enseignant: '' });
+      setIsAdding(true);
+    } else {
+      alert("Vous n'avez pas la permission d'ajouter un module.");
+    }
   };
 
   const handleClosePopup = () => {
@@ -59,27 +70,28 @@ const ModuleManagement = () => {
     setSelectedModule(null);
   };
 
-  // 🗑️ Supprimer avec confirmation
   const handleDelete = (moduleToDelete) => {
-    const confirmDelete = window.confirm(
-      `Êtes-vous sûr de vouloir supprimer le module "${moduleToDelete.nom}" ?`
-    );
+    if (role === 'chef departement') {
+      const confirmDelete = window.confirm(
+        `Êtes-vous sûr de vouloir supprimer le module "${moduleToDelete.nom}" ?`
+      );
 
-    if (confirmDelete) {
-      const updated = modules.filter((mod) => mod.nom !== moduleToDelete.nom);
-      setModules(updated);
+      if (confirmDelete) {
+        const updated = modules.filter((mod) => mod.nom !== moduleToDelete.nom);
+        setModules(updated);
+      }
+    } else {
+      alert("Vous n'avez pas la permission de supprimer ce module.");
     }
   };
 
-  // Trigger Export Popup
   const handleExportClick = () => {
     setShowExportPopup(true);
   };
 
-  // Handle export based on user choice
   const handleExport = (fileType) => {
     console.log(`Exporting to ${fileType} format`);
-    // Here you can implement the actual export logic using libraries like exceljs for Excel and jsPDF for PDF
+    // Implement the actual export logic here.
   };
 
   return (
@@ -104,9 +116,11 @@ const ModuleManagement = () => {
           </div>
 
           <div className="button-group">
-            <button className="button-blue" onClick={handleAdd}>
-              AJOUTER UN MODULE
-            </button>
+            {role === 'chef departement' && (
+              <button className="button-blue" onClick={handleAdd}>
+                AJOUTER UN MODULE
+              </button>
+            )}
             <button className="button-outline" onClick={handleExportClick}>
               EXPORTER LA LISTE
             </button>
@@ -117,6 +131,7 @@ const ModuleManagement = () => {
           modules={paginatedModules}
           onEdit={handleEdit}
           onDelete={handleDelete}
+          role={role}
         />
 
         <Pagination

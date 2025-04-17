@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ModuleTable = ({ modules, onEdit, onDelete }) => {
+const ModuleTable = ({ modules, onEdit, onDelete, role }) => {
   // Fonction pour gérer la suppression avec confirmation
   const handleDelete = (module) => {
     const confirmDelete = window.confirm(
@@ -25,7 +25,7 @@ const ModuleTable = ({ modules, onEdit, onDelete }) => {
           <th>Spécialité concernée</th>
           <th>Semestre</th>
           <th>Enseignant responsable</th>
-          <th>Actions</th>
+          {role === 'chef departement' && <th>Actions</th>}
         </tr>
       </thead>
       <tbody>
@@ -39,26 +39,28 @@ const ModuleTable = ({ modules, onEdit, onDelete }) => {
             <td>{mod.specialite}</td>
             <td>{mod.semestre}</td>
             <td>{mod.enseignant}</td>
-            <td>
-              <button
-                className="exchange-btn"
-                onClick={(e) => { 
-                  e.stopPropagation(); // Empêche le déclenchement de la suppression
-                  onEdit(mod);
-                }}
-              >
-                Échanger
-              </button>
-              <button
-                className="delete-btn"
-                onClick={(e) => { 
-                  e.stopPropagation(); // Empêche le déclenchement de la suppression
-                  handleDelete(mod); // La suppression est appelée ici aussi
-                }}
-              >
-                ❌
-              </button>
-            </td>
+            {role === 'chef departement' && (
+              <td>
+                <button
+                  className="exchange-btn"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Empêche le déclenchement de la suppression
+                    onEdit(mod);
+                  }}
+                >
+                  Échanger
+                </button>
+                <button
+                  className="delete-btn"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Empêche le déclenchement de la suppression
+                    handleDelete(mod); // La suppression est appelée ici aussi
+                  }}
+                >
+                  ❌
+                </button>
+              </td>
+            )}
           </tr>
         ))}
       </tbody>
