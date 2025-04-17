@@ -19,7 +19,7 @@ const Popup = ({ module, onSave, onClose }) => {
   return (
     <div className="popup-overlay">
       <div className="popup-container">
-        <h3>Edit Module: {module.nom}</h3>
+        <h3>Ajouter un module: {module.nom}</h3>
         <form onSubmit={handleSubmit}>
           <label>
             Module:

@@ -2,25 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Sidebar.css';
 import logo from '../assets/eduorg.logo.png';
-import { FiLayout, FiUser, FiBookOpen, FiUsers, FiSettings, FiLogOut } from 'react-icons/fi';
+import { 
+  FiLayout, 
+  FiUser, 
+  FiBookOpen, 
+  FiUsers, 
+  FiSettings, 
+  FiLogOut,
+  FiMessageSquare  // <-- New icon import
+} from 'react-icons/fi';
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const [userRole, setUserRole] = useState('');
 
   useEffect(() => {
-    // Get the role from localStorage
     const role = localStorage.getItem('userRole');
     if (role) {
-      setUserRole(role);  // Set the role if it's available in localStorage
+      setUserRole(role);
     } else {
-      setUserRole('chef departement');  // Default to 'chef departement' if not set (pour tester brk)
+      setUserRole('staff administrateur'); // Default for testing
     }
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('userRole');
-    navigate('/signup');
+    navigate('/login');
   };
 
   return (
@@ -30,7 +37,7 @@ const Sidebar = () => {
       </div>
 
       <div className="role-display">
-        <strong>{userRole}</strong>  {/* This will now correctly display the role */}
+        <strong>{userRole}</strong>
       </div>
 
       <nav className="menu">
@@ -54,7 +61,15 @@ const Sidebar = () => {
           <span>Organigramme</span>
         </div>
 
-        {/* Show settings only for "chef departement" */}
+        {/* Afficher 'Commentaires' seulement pour 'staff administrateur' */}
+        {userRole === 'staff administrateur' && (
+          <div className="menu-item">
+            <FiMessageSquare size={18} />
+            <span>Commentaires</span>
+          </div>
+        )}
+
+        {/* Afficher 'Paramètre' seulement pour 'chef departement' */}
         {userRole === 'chef departement' && (
           <div className="menu-item">
             <FiSettings size={18} />

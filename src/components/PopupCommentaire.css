@@ -1,0 +1,76 @@
+/* PopupCommentaire.css */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .popup-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 450px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .popup-container h3 {
+    font-size: 24px;
+    color: #007bff; /* Couleur bleu */
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  
+  .textarea-commentaire {
+    width: 80%;
+    padding: 14px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .popup-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .button-bleu {
+    background-color: #19cf89; 
+    color: white; 
+    border: 1px solid #9ca3af;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .button-bleu:hover {
+    background-color: #0056b3; 
+  }
+  .button-outline {
+    padding: 10px 18px;
+    border: 1px solid #d9dce0;
+    border-radius: 9999px;
+    background-color: #bdcbeb; 
+    color: #262627; 
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .button-outline:hover {
+    background-color: #8fbbeb; /* Bleu foncé au survol */
+  }
+  
+  
+  
