@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import ModuleTable from '../components/ModuleTable';
 import Pagination from '../components/Pagination';
 import Popup from '../components/Popup';
 import ExportPopup from '../components/ExportPopup';
 import './ModuleManagement.css';
+import PopupCommentaire from '../components/PopupCommentaire'; // Import your PopupCommentaire component
 
 const ModuleManagement = () => {
-  // Manually set the role for testing
-  const [role, setRole] = useState('chef departement');  // Change this to test different roles(pour tester brk )
+  const [role, setRole] = useState('chef departement'); // Change this for testing roles
 
   const [modules, setModules] = useState([
     { nom: 'Programmation web', specialite: 'Informatique', semestre: 'S3', enseignant: 'Sara Bouzid' },
@@ -23,6 +23,8 @@ const ModuleManagement = () => {
   const [isAdding, setIsAdding] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [showExportPopup, setShowExportPopup] = useState(false);
+  const [showCommentPopup, setShowCommentPopup] = useState(false); // State to control the popup visibility
+  const [commentText, setCommentText] = useState(''); // State to store the comment
 
   const itemsPerPage = 3;
 
@@ -91,7 +93,11 @@ const ModuleManagement = () => {
 
   const handleExport = (fileType) => {
     console.log(`Exporting to ${fileType} format`);
-    // Implement the actual export logic here.
+    // Implement export logic here
+  };
+
+  const handleCommentClick = () => {
+    setShowCommentPopup(true);
   };
 
   return (
@@ -117,13 +123,24 @@ const ModuleManagement = () => {
 
           <div className="button-group">
             {role === 'chef departement' && (
-              <button className="button-blue" onClick={handleAdd}>
+              <button className="button-module" onClick={handleAdd}>
                 AJOUTER UN MODULE
               </button>
             )}
-            <button className="button-outline" onClick={handleExportClick}>
+
+            <button className="button-export" onClick={handleExportClick}>
               EXPORTER LA LISTE
             </button>
+
+            {/* Bouton Commentaire pour staff admin */}
+            {role === 'staff administrateur' && (
+              <button
+                className="button-comment"
+                onClick={handleCommentClick} // Show the comment popup
+              >
+                💬 COMMENTAIRES
+              </button>
+            )}
           </div>
         </div>
 
@@ -152,6 +169,21 @@ const ModuleManagement = () => {
           <ExportPopup
             onClose={() => setShowExportPopup(false)}
             onExport={handleExport}
+          />
+        )}
+
+        {/* Popup pour commentaire */}
+        {showCommentPopup && (
+          <PopupCommentaire
+            isOpen={showCommentPopup}
+            setIsOpen={setShowCommentPopup}
+            commentText={commentText}
+            setCommentText={setCommentText}
+            onSubmit={() => {
+              console.log('Commentaire ajouté:', commentText);
+              setShowCommentPopup(false); // Close popup after submitting
+              setCommentText(''); // Clear the comment
+            }}
           />
         )}
       </main>

@@ -49,6 +49,7 @@ body {
 .search-wrapper {
   position: relative;
   width: 300px;
+  margin-top: 25px;
 }
 
 .search-icon {
@@ -75,8 +76,8 @@ body {
 }
 
 .button-blue {
-  background-color: #dbeafe;
-  color: #1e3a8a;
+  background-color: #1a9740;
+  color: #eef0f5;
   padding: 10px 18px;
   border: none;
   border-radius: 9999px;
@@ -86,21 +87,66 @@ body {
 }
 
 .button-blue:hover {
-  background-color: #bfdbfe;
+  background-color: #104d13;
 }
-
-.button-outline {
+.button-module {
+  background-color: #1261d8;
+  color: #eef0f5;
   padding: 10px 18px;
-  border: 1px solid #9ca3af;
+  border: none;
   border-radius: 9999px;
-  background-color: white;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
-.button-outline:hover {
-  background-color: #f3f4f6;
+/* ----- Nouveau bouton Exporter ----- */
+.button-export {
+  padding: 10px 18px;
+  border: 1px solid #9ca3af;
+  border-radius: 9999px;
+  background-color: #eff3fa; 
+  color: #262627; 
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.button-export:hover {
+  background-color: #6babff; /* Fond foncé */
+  color: white; /* Texte blanc au survol */
+}
+.button-comment {
+  padding: 10px 18px;
+  border: 1px solid #9ca3af;
+  border-radius: 9999px;
+  background-color: #227ddd; 
+  color: #262627; 
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.button-comment:hover {
+  background-color: #6babff; /* Fond foncé */
+  color: white; /* Texte blanc au survol */
+}
+
+
+/* Style du champ de commentaire */
+textarea {
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  padding: 12px;
+  resize: vertical;
+  background-color: #f8fafc;
+  transition: border 0.2s ease;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
 }
 
 /* Tableau */
