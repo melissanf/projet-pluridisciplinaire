@@ -1,0 +1,104 @@
+/* Container principal avec la sidebar */
+.container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Partie principale (contenu à droite de la sidebar) */
+  .main {
+    flex-grow: 1;
+    padding: 2rem;
+    overflow-y: auto;
+  }
+  
+  /* Titre de la page */
+  .main h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  /* Liste des commentaires */
+  .comment-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Un seul commentaire */
+  .comment-item {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.2s ease-in-out;
+  }
+  
+  .comment-item:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  }
+  
+  .comment-text {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Pied de chaque commentaire */
+  .comment-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  /* Date du commentaire */
+  .comment-date {
+    font-size: 13px;
+    color: #888;
+  }
+  
+  /* Auteur du commentaire */
+  .comment-author {
+    font-size: 14px;
+    color: #555;
+    font-style: italic;
+    margin-left: 10px;
+  }
+  
+  /* Bouton de suppression */
+  .delete-button {
+    background-color: transparent;
+    border: none;
+    color: #d11a2a;
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.2s ease;
+  }
+  
+  .delete-button:hover {
+    color: #a2000f;
+  }
+  
+  /* Responsive pour petits écrans */
+  @media (max-width: 600px) {
+    .main {
+      padding: 1rem;
+    }
+  
+    .comment-footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+    }
+  
+    .delete-button {
+      align-self: flex-end;
+    }
+  }
+  

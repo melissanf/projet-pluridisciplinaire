@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom'; // Ajout de useLocation
 import './Sidebar.css';
 import logo from '../assets/eduorg.logo.png';
 import { 
@@ -9,11 +9,12 @@ import {
   FiUsers, 
   FiSettings, 
   FiLogOut,
-  FiMessageSquare  // <-- New icon import
+  FiMessageSquare
 } from 'react-icons/fi';
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const location = useLocation(); // Pour savoir sur quelle page on est
   const [userRole, setUserRole] = useState('');
 
   useEffect(() => {
@@ -21,13 +22,17 @@ const Sidebar = () => {
     if (role) {
       setUserRole(role);
     } else {
-      setUserRole('staff administrateur'); // Default for testing
+      setUserRole('chef departement'); // Default for testing
     }
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('userRole');
     navigate('/login');
+  };
+
+  const handleNavigate = (path) => {
+    navigate(path);
   };
 
   return (
@@ -41,29 +46,29 @@ const Sidebar = () => {
       </div>
 
       <nav className="menu">
-        <div className="menu-item">
+        <div className={`menu-item ${location.pathname === '/dashboard' ? 'active' : ''}`} onClick={() => handleNavigate('/dashboard')}>
           <FiLayout size={18} />
           <span>Tableau de bord</span>
         </div>
 
-        <div className="menu-item">
+        <div className={`menu-item ${location.pathname === '/enseignants' ? 'active' : ''}`} onClick={() => handleNavigate('/enseignants')}>
           <FiUser size={18} />
           <span>Enseignants</span>
         </div>
 
-        <div className="menu-item active">
+        <div className={`menu-item ${location.pathname === '/modules' ? 'active' : ''}`} onClick={() => handleNavigate('/modules')}>
           <FiBookOpen size={18} />
           <span>Modules</span>
         </div>
 
-        <div className="menu-item">
+        <div className={`menu-item ${location.pathname === '/organigramme' ? 'active' : ''}`} onClick={() => handleNavigate('/organigramme')}>
           <FiUsers size={18} />
           <span>Organigramme</span>
         </div>
 
-        {/* Afficher 'Commentaires' seulement pour 'staff administrateur' */}
-        {userRole === 'staff administrateur' && (
-          <div className="menu-item">
+        {/* Afficher 'Commentaires' seulement pour 'chef departement' */}
+        {userRole === 'chef departement' && (
+          <div className={`menu-item ${location.pathname === '/commentaires' ? 'active' : ''}`} onClick={() => handleNavigate('/commentaires')}>
             <FiMessageSquare size={18} />
             <span>Commentaires</span>
           </div>
@@ -71,7 +76,7 @@ const Sidebar = () => {
 
         {/* Afficher 'Paramètre' seulement pour 'chef departement' */}
         {userRole === 'chef departement' && (
-          <div className="menu-item">
+          <div className={`menu-item ${location.pathname === '/parametre' ? 'active' : ''}`} onClick={() => handleNavigate('/parametre')}>
             <FiSettings size={18} />
             <span>Paramètre</span>
           </div>

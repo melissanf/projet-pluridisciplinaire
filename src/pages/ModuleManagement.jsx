@@ -90,10 +90,9 @@ const ModuleManagement = () => {
   const handleExportClick = () => {
     setShowExportPopup(true);
   };
-
+   // export liste
   const handleExport = (fileType) => {
     console.log(`Exporting to ${fileType} format`);
-    // Implement export logic here
   };
 
   const handleCommentClick = () => {
@@ -162,6 +161,7 @@ const ModuleManagement = () => {
             module={selectedModule}
             onSave={handleSave}
             onClose={handleClosePopup}
+            isAdding={isAdding}
           />
         )}
 

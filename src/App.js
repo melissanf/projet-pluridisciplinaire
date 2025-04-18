@@ -7,7 +7,8 @@ import Signup from './signup/signup';
 import Login from './login/login';
 import Alerts from './AlertPage/alerts';
 import ModuleManagement from './pages/ModuleManagement';
-import Sidebar from './components/Sidebar'; // Assurez-vous que Sidebar est importé ici si vous l'affichez globalement
+import Commentaires from './pages/Commentaires'; // Assurez-vous que Commentaires est importé ici
+import Sidebar from './components/Sidebar';
 
 // 🎬 Wrapper pour animer les transitions de page
 const PageWrapper = ({ children }) => {
@@ -73,9 +74,22 @@ const App = () => {
           path="/modules"
           element={
             <PageWrapper>
-              {/* ⬇️ Passer le rôle et le setter */}
               <ModuleManagement role={role} onRoleChange={handleRoleChange} />
             </PageWrapper>
+          }
+        />
+
+        {/* Route pour la page Commentaires */}
+        <Route
+          path="/commentaires"
+          element={
+            role === 'chef departement' ? (
+              <PageWrapper>
+                <Commentaires />
+              </PageWrapper>
+            ) : (
+              <Navigate to="/modules" replace /> // Redirige si ce n'est pas chef departement
+            )
           }
         />
       </Routes>

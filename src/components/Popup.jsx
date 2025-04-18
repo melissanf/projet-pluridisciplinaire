@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './Popup.css';
 
-const Popup = ({ module, onSave, onClose }) => {
+const Popup = ({ module, onSave, onClose,isAdding  }) => {
   const [updatedModule, setUpdatedModule] = useState({ ...module });
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,9 +18,12 @@ const Popup = ({ module, onSave, onClose }) => {
   };
 
   return (
+    
     <div className="popup-overlay">
       <div className="popup-container">
-        <h3>Ajouter un module: {module.nom}</h3>
+      <h3 className="popup-title">
+  {isAdding ? 'Ajouter un module' : 'Modifier le module'}
+</h3>
         <form onSubmit={handleSubmit}>
           <label>
             Module:
