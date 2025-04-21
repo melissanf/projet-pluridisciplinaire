@@ -5,10 +5,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 // Pages
 import Signup from './signup/signup';
 import Login from './login/login';
-import Alerts from './AlertPage/alerts';
+import Alerts from './pages/alerts';
 import ModuleManagement from './pages/ModuleManagement';
-import Commentaires from './pages/Commentaires'; // Assurez-vous que Commentaires est importé ici
-import Sidebar from './components/Sidebar';
+import Commentaires from './pages/Commentaires';
+import WishList from './pages/WishList';  // Ensure this file is correctly named
+import Profil from './pages/Profil';
+import TeacherTable from './pages/TeacherTable';  // Make sure this matches your file name
 
 // 🎬 Wrapper pour animer les transitions de page
 const PageWrapper = ({ children }) => {
@@ -41,8 +43,10 @@ const App = () => {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
+        {/* Redirection par défaut */}
         <Route path="/" element={<Navigate to="/login" replace />} />
 
+        {/* Auth */}
         <Route
           path="/login"
           element={
@@ -51,7 +55,6 @@ const App = () => {
             </PageWrapper>
           }
         />
-
         <Route
           path="/signup"
           element={
@@ -61,6 +64,7 @@ const App = () => {
           }
         />
 
+        {/* Pages */}
         <Route
           path="/alerts"
           element={
@@ -69,7 +73,6 @@ const App = () => {
             </PageWrapper>
           }
         />
-
         <Route
           path="/modules"
           element={
@@ -78,8 +81,6 @@ const App = () => {
             </PageWrapper>
           }
         />
-
-        {/* Route pour la page Commentaires */}
         <Route
           path="/commentaires"
           element={
@@ -88,8 +89,38 @@ const App = () => {
                 <Commentaires />
               </PageWrapper>
             ) : (
-              <Navigate to="/modules" replace /> // Redirige si ce n'est pas chef departement
+              <Navigate to="/modules" replace />
             )
+          }
+        />
+
+        {/* ✅ Nouvelle route : WishList */}
+        <Route
+          path="/wishlist"
+          element={
+            <PageWrapper>
+              <WishList />
+            </PageWrapper>
+          }
+        />
+
+        {/* ✅ Nouvelle route : Profil */}
+        <Route
+          path="/profil"
+          element={
+            <PageWrapper>
+              <Profil />
+            </PageWrapper>
+          }
+        />
+
+        {/* ✅ Nouvelle route : Gestion des enseignants */}
+        <Route
+          path="/enseignants"
+          element={
+            <PageWrapper>
+              <TeacherTable role={role} />
+            </PageWrapper>
           }
         />
       </Routes>
