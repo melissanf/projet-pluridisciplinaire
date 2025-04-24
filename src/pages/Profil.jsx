@@ -1,41 +1,16 @@
 import React from "react";
 import "./Profil.css";
-import { LayoutDashboard, User, BookOpen, Bell, LogOut } from "lucide-react";
-import logo from "../assets/eduorg.logo.png"; 
+import SidebarTeacher from "../components/SidebarTeacher"; // Import de la sidebar réutilisable
 
 const Profil = () => {
   const handleLogout = () => {
     console.log("Déconnexion...");
- 
   };
 
   return (
     <div className="app-container">
-      <aside className="sidebar">
-        <img src={logo} alt="EduOrg Logo" className="logo" />
-        <nav className="menu">
-          <div className="menu-item">
-            <LayoutDashboard size={18} />
-            <span>Dashboard</span>
-          </div>
-          <div className="menu-item active">
-            <User size={18} />
-            <span>Profil</span>
-          </div>
-          <div className="menu-item">
-            <BookOpen size={18} />
-            <span>Modules</span>
-          </div>
-          <div className="menu-item">
-            <Bell size={18} />
-            <span>Alertes</span>
-          </div>
-        </nav>
-        <div className="logout" onClick={handleLogout}>
-          <LogOut size={18} />
-          <span>Déconnexion</span>
-        </div>
-      </aside>
+      {/* Utilisation de la SidebarTeacher */}
+      <SidebarTeacher />
 
       <main className="profile-form">
         <h1>Mon Profil</h1>
@@ -59,6 +34,7 @@ const Profil = () => {
           <input type="text" placeholder="Votre domaine de spécialité" />
           <textarea placeholder="Formation"></textarea>
           <textarea placeholder="Expérience professionnelle"></textarea>
+          <button type="submit">Sauvegarder</button>
         </form>
       </main>
     </div>

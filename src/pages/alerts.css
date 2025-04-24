@@ -1,110 +1,81 @@
 /* Conteneur principal */
 .alerts-container {
-    display: flex;
-    height: 100vh;
-    font-family: 'Segoe UI', sans-serif;
-  }
-  
-  /* Sidebar */
-  .sidebar {
-    width: 250px;
-    background-color: #e1f0ff;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .logo {
-    width: 350px;
-    margin-bottom: -300px;
-    margin-top: -100px;
-    margin-left: -100px;
-  }
-  
-  .menu {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    
-  }
-  
-  .menu-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    color: #333;
-    transition: 0.3s;
-  }
-  
-  .menu-item:hover,
-  .menu-item.active {
-    background-color: #cce5ff;
-    border-radius: 8px;
-    padding: 8px;
-  }
-  
-  .red-dot {
-    width: 8px;
-    height: 8px;
-    background-color: red;
-    border-radius: 50%;
-    margin-left: auto;
-  }
-  
-  /* Déconnexion */
-  .logout {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #444;
-    cursor: pointer;
-  }
-  
-  /* Contenu principal */
-  .alert-main {
-    flex: 1;
-    padding: 40px;
-    background-color: #f9fbfc;
-  }
-  
-  .title {
-    font-size: 20px;
-    color: #1045a3;
-    margin-bottom: 30px;
-  }
-  
-  /* Carte d'alerte */
-  .alert-card {
-    background: white;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-left: 4px solid;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  }
-  
-  .alert-card.red {
-    border-color: #ff4d4f;
-    color: #d32029;
-  }
-  
-  .alert-card.yellow {
-    border-color: #faad14;
-    color: #d48806;
-  }
-  
-  .alert-card.blue {
-    border-color: #1890ff;
-    color: #0050b3;
-  }
-  
-  .meta {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    margin-top: 10px;
-    color: #888;
-  }
-  
+  display: flex;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Contenu principal */
+.alert-main {
+  flex: 1;
+  padding: 40px;
+  background-color: #f9fbfc;
+}
+
+/* Titre de la page */
+.title {
+  font-size: 20px;
+  color: #1045a3;
+  margin-bottom: 30px;
+}
+
+/* Carte d'alerte */
+.alert-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-left: 4px solid;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Couleurs par type d’alerte */
+.alert-card.red {
+  border-color: #ff4d4f;
+  color: #d32029;
+}
+
+.alert-card.yellow {
+  border-color: #faad14;
+  color: #d48806;
+}
+
+.alert-card.blue {
+  border-color: #1890ff;
+  color: #0050b3;
+}
+
+/* Zone de contenu d'alerte */
+.alert-content {
+  flex: 1;
+}
+
+/* Métadonnées (heure et date) */
+.meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-top: 10px;
+  color: #888;
+}
+
+/* Bouton Supprimer */
+.delete-button {
+  background-color: #a71013;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  margin-left: 20px;
+}
+
+/* Effet hover */
+.delete-button:hover {
+  background-color: #eb9095;
+}

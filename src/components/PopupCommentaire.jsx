@@ -6,6 +6,7 @@ const PopupCommentaire = ({
   setIsOpen,
   commentText,
   setCommentText,
+  pageType,  // Added pageType prop
 }) => {
   if (!isOpen) return null;
 
@@ -39,7 +40,9 @@ const PopupCommentaire = ({
   return (
     <div className="popup-overlay">
       <div className="popup-container">
-        <h3 className="popup-title">Ajouter un commentaire</h3>
+        <h3 className="popup-title">
+          {pageType === 'module' ? 'Ajouter un commentaire sur le module' : 'Ajouter un commentaire'}
+        </h3>
 
         <textarea
           value={commentText}

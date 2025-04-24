@@ -4,13 +4,13 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 // Pages
 import Signup from './signup/signup';
-import Login from './login/login';
+import LoginPage from './login/login';
 import Alerts from './pages/alerts';
 import ModuleManagement from './pages/ModuleManagement';
 import Commentaires from './pages/Commentaires';
 import WishList from './pages/WishList';  // Ensure this file is correctly named
 import Profil from './pages/Profil';
-import TeacherTable from './pages/TeacherTable';  // Make sure this matches your file name
+import TeacherTableManagment from './pages/TeacherTableManagment';  // Make sure this matches your file name
 
 // 🎬 Wrapper pour animer les transitions de page
 const PageWrapper = ({ children }) => {
@@ -51,7 +51,7 @@ const App = () => {
           path="/login"
           element={
             <PageWrapper>
-              <Login />
+              <LoginPage />
             </PageWrapper>
           }
         />
@@ -119,7 +119,7 @@ const App = () => {
           path="/enseignants"
           element={
             <PageWrapper>
-              <TeacherTable role={role} />
+              <TeacherTableManagment role={role} />
             </PageWrapper>
           }
         />
