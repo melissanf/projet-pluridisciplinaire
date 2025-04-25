@@ -50,19 +50,7 @@
   .exchange-btn:hover {
     background-color: #388e3c;
   }
-  .delete-btn {
-    background-color: #ff4d4f;
-    border: none;
-    padding: 6px 10px;
-    margin-left: 8px;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  /* Style for the container of the buttons */
-td button {
-  margin-right: 10px; /* Add spacing between the buttons */
-}
+ 
 
 /* Style for the Échanger button */
 .exchange-btn {
@@ -80,28 +68,3 @@ td button {
   background-color: #45a049; /* Darker green on hover */
 }
 
-/* Style for the Supprimer button */
-.delete-btn {
-  background-color: red; /* Red background */
-  color: white;
-  padding: 5px 8px;
-  border: none;
-  border-radius: 50%; /* Make it circular */
-  font-size: 18px; /* Bigger font size for the "X" */
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: background-color 0.3s;
-}
-
-/* Hover effect for the Supprimer button */
-.delete-btn:hover {
-  background-color: #f44336; /* Darker red on hover */
-}
-
-/* Additional optional effect: Disable button when hovered */
-.delete-btn:disabled {
-  background-color: #f0f0f0;
-  cursor: not-allowed;
-}

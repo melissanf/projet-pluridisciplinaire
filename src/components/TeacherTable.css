@@ -57,29 +57,5 @@
     background-color: #388e3c;
   }
   
-  /* Style for the Supprimer button */
-  .delete-btn {
-    background-color: #ff4d4f; /* Red background */
-    border: none;
-    padding: 6px 10px;
-    margin-left: 8px;
-    color: white;
-    border-radius: 50%; /* Make it circular */
-    font-size: 18px; /* Bigger font size for the "X" */
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s;
-  }
   
-  .delete-btn:hover {
-    background-color: #f44336; /* Darker red on hover */
-  }
-  
-  /* Optional effect: Disable button when hovered */
-  .delete-btn:disabled {
-    background-color: #f0f0f0;
-    cursor: not-allowed;
-  }
   

@@ -174,40 +174,5 @@ textarea:focus {
   background-color: #f1f5f9;
 }
 
-/* Bouton échange */
-.exchange-btn {
-  padding: 8px 14px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
 
-.exchange-btn:hover {
-  background-color: #388e3c;
-}
 
-/* Pagination */
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-top: 40px;
-}
-
-.pagination button {
-  padding: 8px 14px;
-  border: 1px solid #d1d5db;
-  background-color: white;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.pagination button:hover {
-  background-color: #e5e7eb;
-}
