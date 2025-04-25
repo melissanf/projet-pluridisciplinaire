@@ -147,8 +147,10 @@ const ModuleManagement = () => {
           modules={paginatedModules}
           onEdit={handleEdit}
           onDelete={handleDelete}
+          
           role={role}
         />
+        
 
         <Pagination
           currentPage={currentPage}
