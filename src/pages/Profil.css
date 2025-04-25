@@ -1,90 +1,78 @@
-.app-container { 
-    display: flex;
-    height: 100vh;
-    font-family: 'Segoe UI', sans-serif;
-  }
-  
-  /* ===== Sidebar de référence ===== */
-  .sidebar {
-    width: 250px;
-    background-color: #e1f0ff;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .logo {
-    width: 350px;
-    margin-bottom: -300px;
-    margin-top: -100px;
-    margin-left: -100px;
-  }
-  
-  .menu {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-  }
-  
-  .menu-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    color: #333;
-    transition: 0.3s;
-  }
-  
-  .menu-item:hover,
-  .menu-item.active {
-    background-color: #cce5ff;
-    border-radius: 8px;
-    padding: 8px;
-  }
-  
-  .red-dot {
-    width: 8px;
-    height: 8px;
-    background-color: red;
-    border-radius: 50%;
-    margin-left: auto;
-  }
-  
-  .logout {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #444;
-    cursor: pointer;
-  }
-  /* ===== Fin Sidebar ===== */
-  
-  .profile-form {
-    flex: 1;
-    padding: 40px;
-    background-color: #f5f9ff;
-  }
-  
-  .profile-form h1 {
-    color: #2b6cb0;
-    margin-bottom: 30px;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .form-row {
-    display: flex;
-    gap: 20px;
-  }
-  
-  input, select, textarea {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+/* General container */
+.app-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Profil form container */
+.profile-form {
+  flex: 1;
+  padding: 20px; /* Reduced padding for a more compact layout */
+  background-color: #f5f9ff;
+  border-left: 1px solid #d0e7ff; /* Added border to separate sidebar and content */
+  overflow-y: hidden; /* Prevents overflow and keeps everything visible */
+  box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+/* Titre de la page de profil */
+.profile-form h1 {
+  color: #2b6cb0;
+  font-size: 1.6rem; /* Smaller title font size */
+  font-weight: bold;
+  margin-bottom: 15px; /* Reduced space under the title */
+  text-align: center; /* Centers the title */
+}
+
+/* Formulaire de profil */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Reduced gap between form elements */
+}
+
+/* Row for inputs and selects */
+.form-row {
+  display: flex;
+  gap: 15px; /* Reduced gap for a tighter layout */
+}
+
+/* Form inputs and selects */
+input, select, textarea {
+  flex: 1;
+  padding: 8px; /* Reduced padding for smaller fields */
+  border: 1px solid #ccc;
+  border-radius: 5px; /* Slightly smaller border radius */
+  font-size: 13px; /* Reduced font size for a more compact layout */
+  background-color: #fff; /* White background for consistency */
+  transition: border-color 0.3s ease;
+  box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+/* Effet de focus sur les champs de saisie */
+input:focus, select:focus, textarea:focus {
+  border-color: #2b6cb0; /* Change border color on focus */
+  outline: none; /* Removes default outline */
+}
+
+/* Textarea settings */
+textarea {
+  min-height: 80px; /* Reduced minimum height for a more compact textarea */
+  resize: vertical; /* Allows resizing only vertically */
+}
+
+/* Form buttons (if needed later) */
+button {
+  padding: 8px 16px; /* Reduced button padding */
+  background-color: #2b6cb0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px; /* Slightly smaller font size */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #1e4e8c; /* Darker shade when hovered */
+}

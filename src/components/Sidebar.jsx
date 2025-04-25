@@ -78,7 +78,7 @@ const Sidebar = () => {
         {userRole === 'chef departement' && (
           <div className={`menu-item ${location.pathname === '/parametre' ? 'active' : ''}`} onClick={() => handleNavigate('/parametre')}>
             <FiSettings size={18} />
-            <span>Paramètre</span>
+            <span>Paramètres</span>
           </div>
         )}
       </nav>
