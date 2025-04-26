@@ -54,7 +54,7 @@ const ModuleTable = ({ modules, onEdit, onDelete, role }) => {
                   className="delete-btn"
                   onClick={(e) => {
                     e.stopPropagation(); // Empêche le déclenchement de la suppression
-                    handleDelete(mod); // La suppression est appelée ici aussi
+                    handleDelete(mod); // Suppression avec confirmation
                   }}
                 >
                   ❌

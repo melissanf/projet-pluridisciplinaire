@@ -52,8 +52,8 @@ input, select, textarea {
 
 /* Effet de focus sur les champs de saisie */
 input:focus, select:focus, textarea:focus {
-  border-color: #2b6cb0; /* Change border color on focus */
-  outline: none; /* Removes default outline */
+  border-color: #2b6cb0; 
+  outline: none; 
 }
 
 /* Textarea settings */
