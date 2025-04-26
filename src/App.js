@@ -8,9 +8,11 @@ import LoginPage from './login/login';
 import Alerts from './pages/alerts';
 import ModuleManagement from './pages/ModuleManagement';
 import Commentaires from './pages/Commentaires';
-import WishList from './pages/WishList';  // Ensure this file is correctly named
+import WishList from './pages/WishList';
 import Profil from './pages/Profil';
-import TeacherTableManagment from './pages/TeacherTableManagment';  // Make sure this matches your file name
+import TeacherTableManagment from './pages/TeacherTableManagment';
+import OrganigrammePage from './pages/OrganigrammePage';  // Corrected the import
+import Dashboard from './pages/Dashboard';  // Corrected the import
 
 // 🎬 Wrapper pour animer les transitions de page
 const PageWrapper = ({ children }) => {
@@ -64,7 +66,7 @@ const App = () => {
           }
         />
 
-        {/* Pages */}
+        {/* Pages principales */}
         <Route
           path="/alerts"
           element={
@@ -93,8 +95,6 @@ const App = () => {
             )
           }
         />
-
-        {/* ✅ Nouvelle route : WishList */}
         <Route
           path="/wishlist"
           element={
@@ -103,8 +103,6 @@ const App = () => {
             </PageWrapper>
           }
         />
-
-        {/* ✅ Nouvelle route : Profil */}
         <Route
           path="/profil"
           element={
@@ -113,13 +111,31 @@ const App = () => {
             </PageWrapper>
           }
         />
-
-        {/* ✅ Nouvelle route : Gestion des enseignants */}
         <Route
           path="/enseignants"
           element={
             <PageWrapper>
               <TeacherTableManagment role={role} />
+            </PageWrapper>
+          }
+        />
+
+        {/* 🆕 Nouvelle route : Organigramme */}
+        <Route
+          path="/organigramme"
+          element={
+            <PageWrapper>
+              <OrganigrammePage />
+            </PageWrapper>
+          }
+        />
+
+        {/* 🆕 Nouvelle route : Dashboard */}
+        <Route
+          path="/dashboard"
+          element={
+            <PageWrapper>
+              <Dashboard />
             </PageWrapper>
           }
         />

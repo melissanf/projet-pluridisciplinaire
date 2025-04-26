@@ -1,0 +1,35 @@
+/* Wrapper for the whole page */
+.organigramme-page {
+  display: flex;
+  min-height: 80vh; /* Ensure it takes at least full screen height */
+}
+
+/* Main content area next to the sidebar */
+.organigramme-content {
+  flex: 1;
+  padding: 10px;
+  margin-left: 200px; /* Keep margin for sidebar */
+}
+
+.organigramme-buttons {
+  margin: 20px 0;
+}
+
+.organigramme-buttons button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.organigramme-buttons button:hover {
+  background-color: #d6e6f2;
+}
+
+.organigramme-buttons button.active {
+  background-color: #0f52ba;
+  color: white;
+}

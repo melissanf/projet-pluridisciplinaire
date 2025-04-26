@@ -1,0 +1,27 @@
+.organigramme-section {
+    margin: 20px 0;
+    
+  }
+  
+  .organigramme-table {
+    width: 80%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-family: Arial, sans-serif;
+  }
+  
+  .organigramme-table th,
+  .organigramme-table td {
+    padding: 2px;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
+  
+  .organigramme-table th {
+    background-color: #f0f4f8;
+    color: #002b5b;
+    font-weight: bold;
+  }
