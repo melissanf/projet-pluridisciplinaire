@@ -9,18 +9,19 @@
 .profile-form {
   flex: 1;
   padding: 20px; /* Reduced padding for a more compact layout */
-  background-color: #f5f9ff;
-  border-left: 1px solid #d0e7ff; /* Added border to separate sidebar and content */
+  background-color: #f1f5fa;
+  border-left: 1px solid #fff; /* Added border to separate sidebar and content */
   overflow-y: hidden; /* Prevents overflow and keeps everything visible */
   box-sizing: border-box; /* Ensures padding is included in the width */
 }
 
 /* Titre de la page de profil */
 .profile-form h1 {
-  color: #2b6cb0;
-  font-size: 1.6rem; /* Smaller title font size */
+  color: #25459c;
+  font-size: 2rem; 
   font-weight: bold;
-  margin-bottom: 15px; /* Reduced space under the title */
+  margin-bottom: 50px;
+  margin-top: 50px;
   text-align: center; /* Centers the title */
 }
 
@@ -28,13 +29,13 @@
 form {
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Reduced gap between form elements */
+  gap: 5px; 
 }
 
 /* Row for inputs and selects */
 .form-row {
   display: flex;
-  gap: 15px; /* Reduced gap for a tighter layout */
+  gap: 20px; /* Reduced gap for a tighter layout */
 }
 
 /* Form inputs and selects */
@@ -43,7 +44,7 @@ input, select, textarea {
   padding: 8px; /* Reduced padding for smaller fields */
   border: 1px solid #ccc;
   border-radius: 5px; /* Slightly smaller border radius */
-  font-size: 13px; /* Reduced font size for a more compact layout */
+  font-size: 15px; /* Reduced font size for a more compact layout */
   background-color: #fff; /* White background for consistency */
   transition: border-color 0.3s ease;
   box-sizing: border-box; /* Ensures padding is included in the width */

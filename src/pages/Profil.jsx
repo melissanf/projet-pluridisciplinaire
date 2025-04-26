@@ -21,7 +21,7 @@ const Profil = () => {
           </div>
           <div className="form-row">
             <input type="email" placeholder="votre.email@exemple.com" />
-            <input type="tel" placeholder="+33 6 XX XX XX XX" />
+            <input type="tel" placeholder="+213 6 XX XX XX XX" />
           </div>
           <div className="form-row">
             <select>

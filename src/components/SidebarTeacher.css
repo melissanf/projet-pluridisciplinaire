@@ -10,10 +10,10 @@
 
 /* Logo */
 .logo {
-  width: 300px;
-  margin-bottom: -80px;
-  margin-top: -80px;
-  margin-left: -80px;
+  width: 350px;
+  margin-bottom: 100px;
+  margin-top: -300px;
+  margin-left: -70px;
 }
 
 /* Rôle utilisateur */
@@ -25,34 +25,34 @@
   text-align: center;
   border-radius: 8px;
   font-weight: bold;
-  margin-top: 10px;  /* Adjusted for better layout */
-  margin-bottom: 20px; /* Adjusted for better layout */
+  margin-top: -250px; 
+  margin-bottom: -70px; 
 }
 
 /* Menu */
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  margin-top: 20px; /* Adjusted for better layout */
-}
+  gap: 4px; 
+  margin-bottom: 50px;
 
+}
 .menu-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   cursor: pointer;
   color: #333;
-  padding: 6px;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
+  padding: 20px 15px;
+  border-radius: 20px;
+  transition: background-color 0.2s ease;
 }
 
 .menu-item:hover,
 .menu-item.active {
   background-color: #cce5ff;
-  border-radius: 8px;
-  padding: 8px;
+  border-radius: 10px;
+  padding: 12px;
 }
 
 /* Déconnexion */
