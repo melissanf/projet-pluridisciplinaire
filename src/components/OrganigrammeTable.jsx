@@ -1,7 +1,19 @@
 import React from 'react';
 import './OrganigrammeTable.css';
 
-const OrganigrammeTable = ({ data, title }) => {
+const OrganigrammeTable = ({ data, title, role, onEdit, onDelete }) => {
+  const handleDelete = (ligne) => {
+    // Affichage du message de confirmation
+    const confirmDelete = window.confirm(
+      `Êtes-vous sûr de vouloir supprimer la ligne du module "${ligne.Module}" ?`
+    );
+
+    // Si l'utilisateur confirme, on appelle la fonction onDelete pour supprimer la ligne
+    if (confirmDelete) {
+      onDelete(ligne);
+    }
+  };
+
   return (
     <div className="organigramme-section">
       <h2>{title}</h2>
@@ -19,6 +31,7 @@ const OrganigrammeTable = ({ data, title }) => {
             <th>TP2</th>
             <th>TP3</th>
             <th>TP4</th>
+            {role === 'chef departement' && <th>Actions</th>}
           </tr>
         </thead>
         <tbody>
@@ -35,6 +48,28 @@ const OrganigrammeTable = ({ data, title }) => {
               <td>{ligne.TP2}</td>
               <td>{ligne.TP3}</td>
               <td>{ligne.TP4}</td>
+              {role === 'chef departement' && (
+                <td>
+                  <button
+                    className="exchange-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onEdit(ligne); // Appelle la fonction d'échange
+                    }}
+                  >
+                    Échanger
+                  </button>
+                  <button
+                    className="delete-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDelete(ligne); // Appelle la fonction de suppression avec confirmation
+                    }}
+                  >
+                    ❌
+                  </button>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>

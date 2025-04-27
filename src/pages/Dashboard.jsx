@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import './Dashboard.css';
-import { LayoutDashboard, User, BookOpen, Bell, LogOut } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboard } from '@fortawesome/free-solid-svg-icons';
-import logo from '../assets/eduorg.logo.png';
 import { useNavigate } from 'react-router-dom';
+import SidebarTeacher from '../components/SidebarTeacher'; // Import de la SidebarTeacher
 
 const Dashboard = () => {
   const [activeItem, setActiveItem] = useState('Dashboard');
@@ -20,7 +19,8 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-       <Sidebar />
+      {/* Utilisation de SidebarTeacher */}
+      <SidebarTeacher />
       <main className="main-content">
         <div className="content">
           <div className="top-bar">
