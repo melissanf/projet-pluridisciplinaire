@@ -1,74 +1,96 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Bell, User, BookOpen, LayoutDashboard, LogOut } from 'lucide-react';
+import './SidebarTeacher.css';
 import logo from '../assets/eduorg.logo.png';
-import './SidebarTeacher.css'; // Ensure this file exists
+import { 
+  FiLayout, 
+  FiUser, 
+  FiBookOpen, 
+  FiBell, 
+  FiLogOut, 
+  FiMessageSquare, 
+  FiSettings
+} from 'react-icons/fi';
 
 const SidebarTeacher = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [userRole, setUserRole] = useState('');
 
+  // Fetch the role from localStorage and set it
   useEffect(() => {
-    const role = localStorage.getItem('enseignant');
-    if (role) {
-      setUserRole(role.charAt(0).toUpperCase() + role.slice(1)); // Capitalize role
-    } else {
-      setUserRole('Enseignant'); // Default role for testing
-    }
+    const role = localStorage.getItem('userRole');
+    setUserRole(role || 'enseignant'); // Fallback to 'enseignant' if no role is found
   }, []);
 
   const handleLogout = () => {
-    localStorage.clear(); // Clear storage for testing
+    localStorage.removeItem('userRole'); // Clear user role on logout
     navigate('/login'); // Redirect to login page
   };
 
-  const navigateTo = (path) => {
+  const handleNavigate = (path) => {
     navigate(path); // General navigation function
   };
 
   return (
     <aside className="sidebar">
-      <img src={logo} alt="EduOrg Logo" className="logo" />
+      <div className="logo">
+        <img src={logo} alt="EduOrg Logo" />
+      </div>
 
-      {/* Display user role */}
-      <div className="user-role">
-        <strong>{userRole}</strong>
+      <div className="role-display">
+        <strong>{userRole}</strong> {/* Display user's role */}
       </div>
 
       <nav className="menu">
-        <div
-          className={`menu-item ${location.pathname === '/dashboard' ? 'active' : ''}`}
-          onClick={() => navigateTo('/dashboard')} // Navigate to dashboard
-        >
-          <LayoutDashboard size={18} />
-          <span>Dashboard</span>
-        </div>
-        <div
-          className={`menu-item ${location.pathname === '/profil' ? 'active' : ''}`}
-          onClick={() => navigateTo('/profil')} // Navigate to profil
-        >
-          <User size={18} />
+        {/* For enseignants, show 'Tableau de bord' as 'Dashboardtec' */}
+        {userRole === 'enseignant' && (
+          <div className={`menu-item ${location.pathname === '/dashboardtec' ? 'active' : ''}`} onClick={() => handleNavigate('/dashboardtec')}>
+            <FiLayout size={18} />
+            <span>Tableau de bord </span>
+          </div>
+        )}
+
+        {/* For chef departement or other roles, show 'Tableau de bord' as 'Dashboard' */}
+        {userRole !== 'enseignant' && (
+          <div className={`menu-item ${location.pathname === '/dashboard' ? 'active' : ''}`} onClick={() => handleNavigate('/dashboard')}>
+            <FiLayout size={18} />
+            <span>Tableau de bord</span>
+          </div>
+        )}
+
+        <div className={`menu-item ${location.pathname === '/profil' ? 'active' : ''}`} onClick={() => handleNavigate('/profil')}>
+          <FiUser size={18} />
           <span>Profil</span>
         </div>
-        <div
-          className={`menu-item ${location.pathname === '/modules' ? 'active' : ''}`}
-          onClick={() => navigateTo('/modules')} // Navigate to modules
-        >
-          <BookOpen size={18} />
+
+        <div className={`menu-item ${location.pathname === '/modules' ? 'active' : ''}`} onClick={() => handleNavigate('/modules')}>
+          <FiBookOpen size={18} />
           <span>Modules</span>
         </div>
-        <div
-          className={`menu-item ${location.pathname === '/alerts' ? 'active' : ''}`}
-          onClick={() => navigateTo('/alerts')} // Navigate to alerts
-        >
-          <Bell size={18} />
+
+        <div className={`menu-item ${location.pathname === '/alerts' ? 'active' : ''}`} onClick={() => handleNavigate('/alerts')}>
+          <FiBell size={18} />
           <span>Alertes</span>
         </div>
+
+        {/* Display 'Commentaires' and 'Paramètres' only for 'chef departement' */}
+        {userRole === 'chef departement' && (
+          <>
+            <div className={`menu-item ${location.pathname === '/commentaires' ? 'active' : ''}`} onClick={() => handleNavigate('/commentaires')}>
+              <FiMessageSquare size={18} />
+              <span>Commentaires</span>
+            </div>
+            <div className={`menu-item ${location.pathname === '/parametre' ? 'active' : ''}`} onClick={() => handleNavigate('/parametre')}>
+              <FiSettings size={18} />
+              <span>Paramètres</span>
+            </div>
+          </>
+        )}
       </nav>
 
       <div className="logout" onClick={handleLogout}>
-        <LogOut size={18} />
+        <FiLogOut size={18} />
         <span>Déconnexion</span>
       </div>
     </aside>

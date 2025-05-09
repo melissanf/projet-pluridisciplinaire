@@ -7,6 +7,12 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
+
+  left: 0;
+  top: 0;
+  
+    z-index: 1000; 
+  
 }
 
 /* Logo styling */
@@ -14,13 +20,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: -70px;
-  margin-top: 20px;
+  margin-top: -150px;
+  margin-left: -50px;
 }
 
 .logo img {
-  width: 100%;
-  height: auto;
+  width: 400px;
+  height: 100%;
 }
 
 /* Affichage du rôle de l'utilisateur */
@@ -32,8 +38,8 @@
   color: #333;
   text-align: center;
   font-size: 0.95rem;
-  margin-top: 150px;
-  margin-bottom: -50px;
+  margin-top: -350px;
+  margin-bottom: -200px;
 }
 
 /* Menu */
@@ -41,16 +47,16 @@
   display: flex;
   flex-direction: column;
   gap: 4px; 
-   margin-top: 50px;
+   margin-top: 30px;
 }
 
 .menu-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
   cursor: pointer;
   color: #333;
-  padding: 5px 8px;
+  padding: 10px 13px;
   border-radius: 5px;
   transition: background-color 0.2s ease;
 }
@@ -58,6 +64,8 @@
 .menu-item:hover,
 .menu-item.active {
   background-color: #cce5ff;
+  border-radius: 10px;
+  padding: 12px;
 }
 
 /* Déconnexion */
