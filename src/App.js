@@ -11,22 +11,20 @@ import Commentaires from './pages/Commentaires';
 import WishList from './pages/WishList';
 import Profil from './pages/Profil';
 import TeacherTableManagment from './pages/TeacherTableManagment';
-import OrganigrammePage from './pages/OrganigrammePage';  // Corrected the import
-import Dashboard from './pages/Dashboard';  // Corrected the import
+import OrganigrammePage from './pages/OrganigrammePage';
+import Dashboard from './components/Dashboard';        // Chef / Staff
+import Dashboardtec from './components/Dashboardtec';   // Enseignant (tu avais oublié l'import !)
 
-// 🎬 Wrapper pour animer les transitions de page
-const PageWrapper = ({ children }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.4, ease: 'easeInOut' }}
-    >
-      {children}
-    </motion.div>
-  );
-};
+const PageWrapper = ({ children }) => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.4, ease: 'easeInOut' }}
+  >
+    {children}
+  </motion.div>
+);
 
 const App = () => {
   const location = useLocation();
@@ -49,96 +47,34 @@ const App = () => {
         <Route path="/" element={<Navigate to="/login" replace />} />
 
         {/* Auth */}
-        <Route
-          path="/login"
-          element={
-            <PageWrapper>
-              <LoginPage />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/signup"
-          element={
-            <PageWrapper>
-              <Signup />
-            </PageWrapper>
-          }
-        />
+        <Route path="/login" element={<PageWrapper><LoginPage /></PageWrapper>} />
+        <Route path="/signup" element={<PageWrapper><Signup /></PageWrapper>} />
 
         {/* Pages principales */}
-        <Route
-          path="/alerts"
-          element={
-            <PageWrapper>
-              <Alerts />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/modules"
-          element={
-            <PageWrapper>
-              <ModuleManagement role={role} onRoleChange={handleRoleChange} />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/commentaires"
-          element={
-            role === 'chef departement' ? (
-              <PageWrapper>
-                <Commentaires />
-              </PageWrapper>
+        <Route path="/alerts" element={<PageWrapper><Alerts /></PageWrapper>} />
+        <Route path="/modules" element={<PageWrapper><ModuleManagement role={role} onRoleChange={handleRoleChange} /></PageWrapper>} />
+        <Route path="/commentaires" element={
+          role === 'chef departement' ? (
+            <PageWrapper><Commentaires /></PageWrapper>
+          ) : (
+            <Navigate to="/modules" replace />
+          )
+        } />
+        <Route path="/wishlist" element={<PageWrapper><WishList /></PageWrapper>} />
+        <Route path="/profil" element={<PageWrapper><Profil /></PageWrapper>} />
+        <Route path="/enseignants" element={<PageWrapper><TeacherTableManagment role={role} /></PageWrapper>} />
+        <Route path="/organigramme" element={<PageWrapper><OrganigrammePage /></PageWrapper>} />
+
+        {/* Dashboard dynamique selon rôle */}
+        <Route path="/dashboardtec" element={ // Fixed typo here
+          <PageWrapper>
+            {role === 'enseignant' ? (
+              <Dashboardtec />
             ) : (
-              <Navigate to="/modules" replace />
-            )
-          }
-        />
-        <Route
-          path="/wishlist"
-          element={
-            <PageWrapper>
-              <WishList />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/profil"
-          element={
-            <PageWrapper>
-              <Profil />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/enseignants"
-          element={
-            <PageWrapper>
-              <TeacherTableManagment role={role} />
-            </PageWrapper>
-          }
-        />
-
-        {/* 🆕 Nouvelle route : Organigramme */}
-        <Route
-          path="/organigramme"
-          element={
-            <PageWrapper>
-              <OrganigrammePage />
-            </PageWrapper>
-          }
-        />
-
-        {/* 🆕 Nouvelle route : Dashboard */}
-        <Route
-          path="/dashboard"
-          element={
-            <PageWrapper>
-              <Dashboard />
-            </PageWrapper>
-          }
-        />
+              <Dashboard userRole={role} />
+            )}
+          </PageWrapper>
+        } />
       </Routes>
     </AnimatePresence>
   );

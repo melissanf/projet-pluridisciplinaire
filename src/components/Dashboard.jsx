@@ -3,7 +3,7 @@ import './Dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboard } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import SidebarTeacher from '../components/SidebarTeacher'; // Import de la SidebarTeacher
+import SidebarTeacher from './SidebarTeacher'; // Import de la SidebarTeacher
 
 const Dashboard = () => {
   const [activeItem, setActiveItem] = useState('Dashboard');

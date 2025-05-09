@@ -1,0 +1,52 @@
+.dashboard-container {
+  padding: 40px;
+  flex: 1;
+  background-color: #fff;
+}
+
+.organigram-btn {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.organigram-btn:hover {
+  background-color: #084298;
+}
+
+.alert {
+  background-color: #A6C6D8;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.actions button,
+.quick-access button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.stats div {
+  background-color: #f2f2f2;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+}
