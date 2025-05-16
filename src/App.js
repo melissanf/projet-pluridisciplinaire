@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
-// Pages
+// Pages d'authentification
 import Signup from './signup/signup';
 import LoginPage from './login/login';
+
+// Pages principales
+import Parametre from './pages/Parametre';
 import Alerts from './pages/alerts';
 import ModuleManagement from './pages/ModuleManagement';
 import Commentaires from './pages/Commentaires';
@@ -15,6 +18,7 @@ import OrganigrammePage from './pages/OrganigrammePage';
 import Dashboardorga from './components/Dashboardorga'; // Chef / Staff
 import Dashboardtec from './components/Dashboardtec';   // Enseignant
 
+// Wrapper animation page transitions
 const PageWrapper = ({ children }) => (
   <motion.div
     initial={{ opacity: 0 }}
@@ -43,33 +47,42 @@ const App = () => {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        {/* Redirection par défaut vers login */}
         <Route path="/" element={<Navigate to="/login" replace />} />
 
         {/* Authentification */}
         <Route path="/login" element={<PageWrapper><LoginPage /></PageWrapper>} />
         <Route path="/signup" element={<PageWrapper><Signup /></PageWrapper>} />
 
+        {/* Paramètre */}
+        <Route path="/parametre" element={<PageWrapper><Parametre /></PageWrapper>} />
+
         {/* Pages principales */}
         <Route path="/alerts" element={<PageWrapper><Alerts /></PageWrapper>} />
-        <Route path="/modules" element={<PageWrapper><ModuleManagement role={role} onRoleChange={handleRoleChange} /></PageWrapper>} />
-        <Route path="/commentaires" element={
-          role === 'chef departement' ? (
-            <PageWrapper><Commentaires /></PageWrapper>
-          ) : (
-            <Navigate to="/modules" replace />
-          )
-        } />
+        <Route
+          path="/modules"
+          element={<PageWrapper><ModuleManagement role={role} onRoleChange={handleRoleChange} /></PageWrapper>}
+        />
+        <Route
+          path="/commentaires"
+          element={
+            role === 'chef departement' ? (
+              <PageWrapper><Commentaires /></PageWrapper>
+            ) : (
+              <Navigate to="/modules" replace />
+            )
+          }
+        />
         <Route path="/wishlist" element={<PageWrapper><WishList /></PageWrapper>} />
         <Route path="/profil" element={<PageWrapper><Profil /></PageWrapper>} />
         <Route path="/enseignants" element={<PageWrapper><TeacherTableManagment role={role} /></PageWrapper>} />
         <Route path="/organigramme" element={<PageWrapper><OrganigrammePage /></PageWrapper>} />
 
-        
-      {/* Dashboards sans vérification de rôle */}
+        {/* Dashboards */}
         <Route path="/dashboardtec" element={<PageWrapper><Dashboardtec /></PageWrapper>} />
         <Route path="/dashboardorga" element={<PageWrapper><Dashboardorga userRole={role} /></PageWrapper>} />
 
+        {/* 404 fallback */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AnimatePresence>
   );

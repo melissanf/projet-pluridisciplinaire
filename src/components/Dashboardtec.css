@@ -134,3 +134,27 @@
     font-size: 22px;
   }
 }
+/* Spécifique à la carte Heures de Charge */
+.card p {
+   background-color: #e6efff;
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  font-size: 16px;
+  color: #1b294b;
+  display: flex;
+  align-items: center;
+  
+}
+
+.card p strong {
+  font-weight: 700; /* gras pour les labels */
+  color: #1e3a8a;
+  margin-right: 6px;
+}
+
+/* Style pour le texte des valeurs */
+.card p span.value {
+  font-weight: normal;  /* valeurs en normal */
+  color: #2a3f70;
+}

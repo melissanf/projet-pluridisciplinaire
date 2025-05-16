@@ -1,0 +1,122 @@
+
+
+
+.parametre-container {
+  flex: 1;
+  padding: 40px;
+  background: white;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.switch-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.switch-container label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.switch-container input[type="checkbox"] {
+  width: 40px;
+  height: 20px;
+  appearance: none;
+  background: #ccc;
+  border-radius: 10px;
+  position: relative;
+  outline: none;
+  cursor: pointer;
+}
+
+.switch-container input[type="checkbox"]:checked {
+  background: #4da6ff;
+}
+
+.switch-container input[type="checkbox"]::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.switch-container input[type="checkbox"]:checked::before {
+  transform: translateX(20px);
+}
+
+.radio-group {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.radio-group label {
+  font-size: 1rem;
+}
+
+.couleurs-specialite {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.dot {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.informatique { background-color: #001f5f; }
+.ia { background-color: #6caf37; }
+.reseaux { background-color: #3fa34d; }
+.orangex { background-color: #f4a261; }
+
+.buttons {
+  margin-top: 30px;
+}
+
+.buttons button {
+  background-color: #d0e7ff;
+  border: none;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.buttons button:hover {
+  background-color: #c4dfff;
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.save-btn {
+  background-color: #a8c8ff;
+}
+
