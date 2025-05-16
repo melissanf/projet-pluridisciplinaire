@@ -1,23 +1,21 @@
 .dashboardtec-container {
   display: flex;
   height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7fb; /* subtle background */
 }
 
-
-
-/* ✅ Contenu principal décalé à droite de la sidebar */
+/* Main Content */
 .main-content {
-  margin-left: 320px; 
-  padding: 20px;
   flex: 1;
+  padding: 30px 40px;
   background-color: #f9fbfc;
-  height: 100vh;
-  margin-top: -700px;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
-/* Top bar */
-.top-bar {
+/* Header */
+.dashboard-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,74 +23,114 @@
 }
 
 .welcome {
-  font-size: 20px;
-  color: #1045a3;
-  margin-bottom: 0;
+  font-size: 30px;       /* Bigger title */
+  font-weight: 700;      /* Bold */
+  color: #0d3c91;       /* Darker blue */
+  margin: 0;
 }
 
 .welcome span {
   color: #295bb3;
 }
 
-/* Bouton */
+/* Wishlist Button */
 .wishlist-button {
-  background-color: #2458b1;
+  background-color: #295bb3;
   color: white;
   border: none;
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-size: 14px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 16px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 6px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(41, 91, 179, 0.3);
+  transition: background-color 0.3s ease;
 }
 
-/* Cartes */
-.cards {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+.wishlist-button:hover {
+  background-color: #1f3e8a;
 }
 
+/* Cards Grid */
+.cards-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 20px 30px; /* vertical 30px, horizontal 40px */
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Each Card */
 .card {
   background-color: white;
-  border: 1px solid #d0d0d0;
-  border-radius: 10px;
-  padding: 20px;
-  width: 300px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 14px;
+  padding: 24px 20px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+  transition: box-shadow 0.3s ease;
+  border: none;
+}
+
+.card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .card h2 {
-  font-size: 18px;
-  color: #295bb3;
-  margin-bottom: 15px;
+  font-size: 24px;    /* Bigger title */
+  font-weight: 600;
+  color: #1e3a8a;
+  margin-bottom: 22px;
+  letter-spacing: 0.03em;
 }
 
 .card-item {
-  background-color: #f0f5fa;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 10px;
+  background-color: #e6efff;
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  font-size: 16px;
+  color: #2a3f70;
+  display: flex;
+  align-items: center;
 }
 
 .dot {
-  margin-right: 8px;
+  margin-right: 12px;
+  font-size: 18px;
 }
 
-/* Barre de progression */
+/* Progress Bar */
 .progress-bar {
-  background-color: #e0e0e0;
-  height: 8px;
-  border-radius: 4px;
-  margin-top: 10px;
+  background-color: #d9d9d9;
+  height: 10px;
+  border-radius: 6px;
+  margin-top: 14px;
   width: 100%;
+  overflow: hidden;
 }
 
 .progress {
   height: 100%;
-  background-color: #1e90ff;
-  border-radius: 4px;
+  background-color: #3b82f6;
+  border-radius: 6px;
+  transition: width 0.5s ease-in-out;
+}
+
+/* Responsive: stack cards on small screens */
+@media (max-width: 680px) {
+  .cards-wrapper {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    gap: 25px 0;
+  }
+  
+  .wishlist-button {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+
+  .welcome {
+    font-size: 22px;
+  }
 }
