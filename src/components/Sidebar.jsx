@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Sidebar.css';
-import logo from '../assets/eduorg.logo.png';
+import logo from '../assets/eduorg.logo.png'; // Vérifie ce chemin selon ton projet
 import {
   FiLayout,
   FiUser,
@@ -19,7 +19,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     const role = localStorage.getItem('userRole');
-    setUserRole(role || 'chef departement'); // Fallback pour tests
+    setUserRole(role || 'chef departement');
   }, []);
 
   const handleLogout = () => {
@@ -44,12 +44,7 @@ const Sidebar = () => {
       </div>
 
       <nav className="menu">
-        {/* Corrigé : va bien vers /dashboardorga */}
-        <div
-          className={`menu-item ${isActive('/dashboardorga') ? 'active' : ''}`}
-         onClick={() => handleNavigate('/dashboardorga')}
->
-        
+        <div className={`menu-item ${isActive('/dashboardorga') ? 'active' : ''}`} onClick={() => handleNavigate('/dashboardorga')}>
           <FiLayout size={18} />
           <span>Tableau de bord</span>
         </div>
@@ -70,18 +65,16 @@ const Sidebar = () => {
         </div>
 
         {userRole === 'chef departement' && (
-          <>
-            <div className={`menu-item ${isActive('/commentaires') ? 'active' : ''}`} onClick={() => handleNavigate('/commentaires')}>
-              <FiMessageSquare size={18} />
-              <span>Commentaires</span>
-            </div>
-
-            <div className={`menu-item ${isActive('/parametre') ? 'active' : ''}`} onClick={() => handleNavigate('/parametre')}>
-              <FiSettings size={18} />
-              <span>Paramètres</span>
-            </div>
-          </>
+          <div className={`menu-item ${isActive('/commentaires') ? 'active' : ''}`} onClick={() => handleNavigate('/commentaires')}>
+            <FiMessageSquare size={18} />
+            <span>Commentaires</span>
+          </div>
         )}
+
+        <div className={`menu-item ${isActive('/parametre') ? 'active' : ''}`} onClick={() => handleNavigate('/parametre')}>
+          <FiSettings size={18} />
+          <span>Paramètres</span>
+        </div>
       </nav>
 
       <div className="logout" onClick={handleLogout}>
