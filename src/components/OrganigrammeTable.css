@@ -1,27 +1,89 @@
-.organigramme-section {
-    margin: 20px 0;
-    
-  }
-  
-  .organigramme-table {
-    width: 80%;
-    border-collapse: collapse;
-    background-color: #fff;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    font-family: Arial, sans-serif;
-  }
- 
-  .organigramme-table th,
-  .organigramme-table td {
-    padding: 2px;
-    text-align: center;
-    border: 1px solid #ccc;
-  }
-  
-  .organigramme-table th {
-    background-color: #f0f4f8;
-    color: #002b5b;
-    font-weight: bold;
-  }
+.organigramme-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.organigramme-table {
+  width: 80%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.organigramme-table th,
+.organigramme-table td {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.organigramme-table th {
+  background-color: #f0f4f8;
+  color: #002b5b;
+  font-weight: bold;
+}
+
+.actions-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9fafb;
+  box-sizing: border-box;
+  /* height sera définie dynamiquement en inline-style */
+}
+
+.actions-header {
+  font-weight: bold;
+  text-align: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #ccc;
+  background-color: #f0f4f8;
+  color: #002b5b;
+  flex-shrink: 0;
+}
+
+.actions-cell {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ccc;
+  flex-shrink: 0;
+}
+
+.actions-cell:last-child {
+  border-bottom: none;
+}
+
+.exchange-btn, .delete-btn {
+  padding: 4px 8px;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white;
+}
+
+.exchange-btn {
+  background-color: #06a82f;
+}
+
+.exchange-btn:hover {
+  background-color: #04661c;
+}
+
+.delete-btn {
+  background-color: #e0d1d1;
+}
+
+.delete-btn:hover {
+  background-color: #dc2626;
+}

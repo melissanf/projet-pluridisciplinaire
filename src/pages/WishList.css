@@ -13,12 +13,11 @@
   cursor: pointer;
   margin-bottom: -20px;
   margin-left: -20px;
-  
 }
+
 .back-button:hover {
   background-color: #0538c533;
 }
-
 
 .title {
   font-size: 40px;
@@ -37,6 +36,7 @@
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 25px;
 }
 
 .form-row {
@@ -106,17 +106,82 @@
   border-color: #0538c5;
 }
 
-.add-button {
+/* Conteneur des deux boutons */
+.buttons-container {
+  display: flex;
+  gap: 15px;
   margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
+}
+
+/* Bouton Ajouter */
+.add-button {
+  flex: 1;
   background-color: #0538c5;
   color: white;
   border: none;
   border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .add-button:hover {
   background-color: #0056b3;
+}
+
+/* Bouton Enregistrer */
+.save-button {
+  flex: 1;
+  background-color: #28a745; /* vert */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.save-button:hover {
+  background-color: #1e7e34;
+}
+
+/* Bouton Supprimer */
+.delete-btn {
+  background-color: #e53935;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  float: right;
+  transition: background-color 0.2s ease;
+}
+
+.delete-btn:hover {
+  background-color: #c62828;
+}
+
+/* Header du vœu */
+.WishList-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Message de confirmation d'enregistrement */
+.save-message {
+  color: green;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+/* Message limite */
+.limit-message {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
 }

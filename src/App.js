@@ -12,8 +12,8 @@ import WishList from './pages/WishList';
 import Profil from './pages/Profil';
 import TeacherTableManagment from './pages/TeacherTableManagment';
 import OrganigrammePage from './pages/OrganigrammePage';
-import Dashboard from './components/Dashboard';        // Chef / Staff
-import Dashboardtec from './components/Dashboardtec';   // Enseignant (tu avais oublié l'import !)
+import Dashboardorga from './components/Dashboardorga'; // Chef / Staff
+import Dashboardtec from './components/Dashboardtec';   // Enseignant
 
 const PageWrapper = ({ children }) => (
   <motion.div
@@ -43,10 +43,10 @@ const App = () => {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        {/* Redirection par défaut */}
+        {/* Redirection par défaut vers login */}
         <Route path="/" element={<Navigate to="/login" replace />} />
 
-        {/* Auth */}
+        {/* Authentification */}
         <Route path="/login" element={<PageWrapper><LoginPage /></PageWrapper>} />
         <Route path="/signup" element={<PageWrapper><Signup /></PageWrapper>} />
 
@@ -65,16 +65,11 @@ const App = () => {
         <Route path="/enseignants" element={<PageWrapper><TeacherTableManagment role={role} /></PageWrapper>} />
         <Route path="/organigramme" element={<PageWrapper><OrganigrammePage /></PageWrapper>} />
 
-        {/* Dashboard dynamique selon rôle */}
-        <Route path="/dashboardtec" element={ // Fixed typo here
-          <PageWrapper>
-            {role === 'enseignant' ? (
-              <Dashboardtec />
-            ) : (
-              <Dashboard userRole={role} />
-            )}
-          </PageWrapper>
-        } />
+        
+      {/* Dashboards sans vérification de rôle */}
+        <Route path="/dashboardtec" element={<PageWrapper><Dashboardtec /></PageWrapper>} />
+        <Route path="/dashboardorga" element={<PageWrapper><Dashboardorga userRole={role} /></PageWrapper>} />
+
       </Routes>
     </AnimatePresence>
   );
