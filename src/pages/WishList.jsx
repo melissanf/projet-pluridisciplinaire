@@ -33,8 +33,12 @@ const TeachingTypeSelector = ({ selectedTypes = [], onChange }) => {
 };
 
 const WishItem = ({ index, wish, onUpdate, onDelete }) => {
-  const handleInputChange = (e) => {
+  const handleModuleChange = (e) => {
     onUpdate(index, { ...wish, module: e.target.value });
+  };
+
+  const handleNiveauChange = (e) => {
+    onUpdate(index, { ...wish, niveau: e.target.value });
   };
 
   const handleTypesChange = (types) => {
@@ -54,6 +58,7 @@ const WishItem = ({ index, wish, onUpdate, onDelete }) => {
         <button className="delete-btn" onClick={handleDelete}>Supprimer</button>
       </div>
 
+{/* Champ pour le nom du module */}
       <div className="form-row">
         <div className="form-group">
           <label>Nom du module</label>
@@ -61,11 +66,26 @@ const WishItem = ({ index, wish, onUpdate, onDelete }) => {
             type="text"
             placeholder="Entrez le nom du module"
             value={wish.module}
-            onChange={handleInputChange}
+            onChange={handleModuleChange}
+          />
+        </div>
+      </div>
+      {/* Champ pour le niveau */}
+      <div className="form-row">
+        <div className="form-group">
+          <label>Niveau</label>
+          <input
+            type="text"
+            placeholder="Ex : L3, M1, etc."
+            value={wish.niveau || ''}
+            onChange={handleNiveauChange}
           />
         </div>
       </div>
 
+      
+
+      {/* Sélection du type d’enseignement */}
       <TeachingTypeSelector
         selectedTypes={wish.teachingTypes}
         onChange={handleTypesChange}
@@ -79,14 +99,13 @@ function WishList() {
   const [saveMessage, setSaveMessage] = useState('');
   const navigate = useNavigate();
 
-  // Démarrer toujours avec une liste vide
   useEffect(() => {
     setWishList([]);
   }, []);
 
   const addWish = () => {
     if (wishList.length >= 3) return;
-    setWishList([...wishList, { module: '', teachingTypes: [] }]);
+    setWishList([...wishList, {  module:'', niveau: '', teachingTypes: [] }]);
   };
 
   const updateWish = (index, updatedWish) => {
@@ -106,7 +125,6 @@ function WishList() {
     setTimeout(() => setSaveMessage(''), 3000);
   };
 
-  // Gestion du bouton retour pour aller vers dashboardtec
   const handleBack = () => {
     navigate('/dashboardtec');
   };

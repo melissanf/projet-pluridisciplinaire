@@ -32,7 +32,6 @@ const ModuleTable = ({ modules, onEdit, onDelete, role }) => {
         {modules.map((mod, index) => (
           <tr
             key={index}
-            onClick={() => handleRowClick(mod)} // Cliquer sur la ligne déclenche la suppression
             style={{ cursor: 'pointer' }} // Indicateur que la ligne est cliquable
           >
             <td>{mod.nom}</td>
@@ -56,8 +55,7 @@ const ModuleTable = ({ modules, onEdit, onDelete, role }) => {
                     e.stopPropagation(); // Empêche le déclenchement de la suppression
                     handleDelete(mod); // Suppression avec confirmation
                   }}
-                >
-                  ❌
+                >❌
                 </button>
               </td>
             )}

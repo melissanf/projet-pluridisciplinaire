@@ -1,0 +1,75 @@
+.popup-confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup-confirm-content {
+  background: white;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+}
+
+.popup-confirm-content h3 {
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+  color: #222;
+}
+
+.popup-confirm-content p {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.popup-confirm-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-bottom: 8px;
+}
+
+.popup-confirm-error {
+  color: red;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.popup-confirm-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.popup-confirm-btn {
+  padding: 10px 20px;
+  font-weight: 700;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  flex: 1;
+}
+
+.popup-confirm-btn.confirm {
+  background-color: #007bff;
+  color: white;
+}
+
+.popup-confirm-btn.cancel {
+  background-color: #ccc;
+  color: #333;
+}
