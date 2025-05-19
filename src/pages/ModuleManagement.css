@@ -176,20 +176,6 @@ textarea:focus {
   background-color: #f1f5f9;
 }
 
-/* Bouton échange */
-.exchange-btn {
-  padding: 8px 14px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.exchange-btn:hover {
-  background-color: #388e3c;
-}
 
 /* Pagination */
 .pagination {
@@ -213,20 +199,3 @@ textarea:focus {
 .pagination button:hover {
   background-color: #e5e7eb;
 }
-/* Bouton supprimer compact à côté de Échanger */
-.delete-btn {
-  background-color: #6589ff49;
-  color: white;
-  padding: 6px 10px;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  margin-left: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.delete-btn:hover {
-  background-color: #ca201ac9;
-}
-

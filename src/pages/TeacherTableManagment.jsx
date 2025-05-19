@@ -25,6 +25,7 @@ const TeacherTableManagment = () => {
   const [showExportPopup, setShowExportPopup] = useState(false);
   const [showCommentPopup, setShowCommentPopup] = useState(false);
   const [commentText, setCommentText] = useState('');
+  
 
   const itemsPerPage = 3;
 
