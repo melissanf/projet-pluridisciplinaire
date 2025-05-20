@@ -1,6 +1,6 @@
 import React from "react";
 import "./Profil.css";
-import SidebarTeacher from "../components/SidebarTeacher"; // Import de la sidebar réutilisable
+import Sidebar from "../components/Sidebar"; // Import de la sidebar réutilisable
 
 const Profil = () => {
   const handleLogout = () => {
@@ -10,7 +10,7 @@ const Profil = () => {
   return (
     <div className="app-container">
       {/* Utilisation de la SidebarTeacher */}
-      <SidebarTeacher />
+      <Sidebar />
 
       <main className="profile-form">
         <h1>Mon Profil</h1>

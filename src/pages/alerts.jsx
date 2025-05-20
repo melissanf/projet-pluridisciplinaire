@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PageWrapper from '../components/PageWrapper';
-import SidebarTeacher from '../components/SidebarTeacher';
+import Sidebar from '../components/Sidebar';
 import './alerts.css';
 
 export default function Alerts() {
@@ -38,7 +38,7 @@ export default function Alerts() {
   return (
     <PageWrapper>
       <div className="alerts-container">
-        <SidebarTeacher />
+        <Sidebar />
         <main className="alert-main">
           <h2 className="title">Alertes et Notifications</h2>
 

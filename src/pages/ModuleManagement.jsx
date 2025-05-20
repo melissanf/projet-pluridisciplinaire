@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import ModuleTable from '../components/ModuleTable';
 import Pagination from '../components/Pagination';
@@ -8,7 +8,12 @@ import './ModuleManagement.css';
 import PopupCommentaire from '../components/PopupCommentaire'; // Import your PopupCommentaire component
 
 const ModuleManagement = () => {
-  const [role, setRole] = useState('chef departement'); // Change this for testing roles
+  const [role, setRole] = useState(''); // état initial vide
+
+  useEffect(() => {
+    const storedRole = localStorage.getItem('userRole') || '';
+    setRole(storedRole);
+  }, []);
 
   const [modules, setModules] = useState([
     { nom: 'Programmation web', specialite: 'Informatique', semestre: 'S3', enseignant: 'Sara Bouzid' },
@@ -23,8 +28,8 @@ const ModuleManagement = () => {
   const [isAdding, setIsAdding] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [showExportPopup, setShowExportPopup] = useState(false);
-  const [showCommentPopup, setShowCommentPopup] = useState(false); // State to control the popup visibility
-  const [commentText, setCommentText] = useState(''); // State to store the comment
+  const [showCommentPopup, setShowCommentPopup] = useState(false);
+  const [commentText, setCommentText] = useState('');
 
   const itemsPerPage = 3;
 
@@ -90,7 +95,7 @@ const ModuleManagement = () => {
   const handleExportClick = () => {
     setShowExportPopup(true);
   };
-   // export liste
+
   const handleExport = (fileType) => {
     console.log(`Exporting to ${fileType} format`);
   };
@@ -131,11 +136,10 @@ const ModuleManagement = () => {
               EXPORTER LA LISTE
             </button>
 
-            {/* Bouton Commentaire pour staff admin */}
             {role === 'staff administrateur' && (
               <button
                 className="button-comment"
-                onClick={handleCommentClick} // Show the comment popup
+                onClick={handleCommentClick}
               >
                 💬 COMMENTAIRES
               </button>
@@ -147,10 +151,8 @@ const ModuleManagement = () => {
           modules={paginatedModules}
           onEdit={handleEdit}
           onDelete={handleDelete}
-          
           role={role}
         />
-        
 
         <Pagination
           currentPage={currentPage}
@@ -174,7 +176,6 @@ const ModuleManagement = () => {
           />
         )}
 
-        {/* Popup pour commentaire */}
         {showCommentPopup && (
           <PopupCommentaire
             isOpen={showCommentPopup}
@@ -183,8 +184,8 @@ const ModuleManagement = () => {
             setCommentText={setCommentText}
             onSubmit={() => {
               console.log('Commentaire ajouté:', commentText);
-              setShowCommentPopup(false); // Close popup after submitting
-              setCommentText(''); // Clear the comment
+              setShowCommentPopup(false);
+              setCommentText('');
             }}
           />
         )}

@@ -68,7 +68,7 @@ const OrganigrammePage = () => {
         {/* Top bar */}
         <div className="organigramme-top-bar">
           {/* Boutons S1/S2 pour chef de département */}
-          {role === 'chef departement' /*||'staff administrateur' */&& (
+          {role === 'chef departement' ||'staff administrateur' && (
             <div className="organigramme-buttons">
               <button
                 className={active === 'S1' ? 'active' : ''}
@@ -107,7 +107,7 @@ const OrganigrammePage = () => {
         </div>
 
         {/* Tableau */}
-        {role === 'chef departement'/*|| 'staff administrateur' */&& (
+        {role === 'chef departement'|| 'staff administrateur' && (
           <OrganigrammeTable
             data={active === 'S1' ? dataS1 : dataS2}
             title={`Organigramme ${active}`}

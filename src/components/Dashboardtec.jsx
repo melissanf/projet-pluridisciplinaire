@@ -3,7 +3,7 @@ import './Dashboardtec.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboard } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import SidebarTeacher from '../components/SidebarTeacher';
+import Sidebar from '../components/Sidebar';
 
 const Dashboardtec = () => {
   const [userInfo, setUserInfo] = useState({
@@ -51,7 +51,7 @@ const Dashboardtec = () => {
 
   return (
     <div className="dashboardtec-container">
-      <SidebarTeacher />
+      <Sidebar />
       <main className="main-content">
         <div className="dashboard-header">
           <h1 className="welcome">

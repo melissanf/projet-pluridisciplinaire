@@ -5,48 +5,69 @@ import { motion } from 'framer-motion';
 import './login.css';
 import logo from '../assets/eduorg.logo.png';
 import illustration from '../assets/Design sans titre (1).png';
+import PopupConfirm from '../components/PopupConfirm';
 
 export default function LoginPage() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [selectedRole, setSelectedRole] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  // Redirection vers la page d'inscription
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [pendingUserData, setPendingUserData] = useState(null);
+
+  // Simuler la base de données
+  const fakeUsersDB = {
+    'chef@example.com': { password: '1234', role: 'chef departement' },
+    'staff@example.com': { password: '1234', role: 'staff administrateur' },
+    'enseignant@example.com': { password: '1234', role: 'enseignant' },
+  };
+
+  const roleCodes = {
+    'chef departement': '1234',
+    'staff administrateur': '1111',
+    'enseignant': '0000',
+  };
+
   const handleSignupClick = () => {
     navigate('/signup');
   };
 
-  // 🔐 Simulation de login
-  const handleLoginSubmit = async (e) => {
+  const handleLoginSubmit = (e) => {
     e.preventDefault();
+    setErrorMessage('');
 
-    try {
-      // 💡 Remplace cette partie avec un vrai appel API
-      // Simulons une réponse
-      const fakeUsersDB = {
-        'chef@example.com': { password: '1234', role: 'chef' },
-        'staff@example.com': { password: '1234', role: 'enseignant' },
-        'admin@example.com': { password: '1234', role: 'admin' },
-      };
+    const user = fakeUsersDB[email];
 
-      const user = fakeUsersDB[email];
-
-      if (!user || user.password !== password) {
-        setErrorMessage("Email ou mot de passe invalide");
-        return;
-      }
-
-      // ✅ Enregistrement du rôle dans localStorage
-      localStorage.setItem('userRole', user.role);
-
-      // ✅ Redirection vers la page Modules
-      navigate('/modules');
-    } catch (err) {
-      console.error(err);
-      setErrorMessage("Une erreur est survenue.");
+    if (!user || user.password !== password || user.role !== selectedRole) {
+      setErrorMessage("Email, mot de passe ou rôle invalide");
+      return;
     }
+
+    const expectedCode = roleCodes[selectedRole];
+
+    setPendingUserData({
+      email,
+      role: selectedRole,
+      expectedCode,
+    });
+
+    setShowConfirmation(true);
+  };
+
+  const handleCodeConfirmed = () => {
+    if (pendingUserData) {
+      localStorage.setItem('userRole', pendingUserData.role);
+      localStorage.setItem('userEmail', pendingUserData.email);
+      setShowConfirmation(false);
+      navigate('/modules');
+    }
+  };
+
+  const handleCodeFailed = () => {
+    setErrorMessage("Code incorrect. Veuillez réessayer.");
   };
 
   return (
@@ -64,7 +85,9 @@ export default function LoginPage() {
             <h2 className="login-title">Se connecter</h2>
 
             {errorMessage && (
-              <div className="error-message">{errorMessage}</div>
+              <div className="error-message" style={{ color: 'red', marginBottom: '1rem' }}>
+                {errorMessage}
+              </div>
             )}
 
             <div className="form-group">
@@ -98,6 +121,22 @@ export default function LoginPage() {
               <label htmlFor="remember">Se souvenir de moi</label>
             </div>
 
+            <div className="form-group">
+              <label htmlFor="role" className="form-label">Sélectionner un poste</label>
+              <select
+                id="role"
+                className="form-input"
+                required
+                value={selectedRole}
+                onChange={(e) => setSelectedRole(e.target.value)}
+              >
+                <option value="" disabled>Sélectionner un poste</option>
+                <option value="chef departement">Chef de département</option>
+                <option value="staff administrateur">Staff administratif</option>
+                <option value="enseignant">Enseignant</option>
+              </select>
+            </div>
+
             <div className="button-group">
               <button type="submit" className="login-button blue-button">
                 Se connecter
@@ -117,6 +156,16 @@ export default function LoginPage() {
           />
         </div>
       </motion.div>
+
+      {showConfirmation && pendingUserData && (
+        <PopupConfirm
+          expectedCode={pendingUserData.expectedCode}
+          role={pendingUserData.role}
+          onSuccess={handleCodeConfirmed}
+          onFailure={handleCodeFailed}
+          onClose={() => setShowConfirmation(false)}
+        />
+      )}
     </PageWrapper>
   );
 }
