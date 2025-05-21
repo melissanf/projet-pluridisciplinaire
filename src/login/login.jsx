@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PageWrapper from '../components/PageWrapper';
 import { motion } from 'framer-motion';
+import Select from 'react-select';
 import './login.css';
 import logo from '../assets/eduorg.logo.png';
 import illustration from '../assets/Design sans titre (1).png';
@@ -12,13 +13,11 @@ export default function LoginPage() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [selectedRole, setSelectedRole] = useState('');
+  const [selectedRole, setSelectedRole] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
-
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [pendingUserData, setPendingUserData] = useState(null);
 
-  // Simuler la base de données
   const fakeUsersDB = {
     'chef@example.com': { password: '1234', role: 'chef departement' },
     'staff@example.com': { password: '1234', role: 'staff administrateur' },
@@ -31,6 +30,32 @@ export default function LoginPage() {
     'enseignant': '0000',
   };
 
+  const roleOptions = [
+    { value: 'chef departement', label: 'Chef de département' },
+    { value: 'staff administrateur', label: 'Staff administrateur' },
+    { value: 'enseignant', label: 'Enseignant' },
+  ];
+
+  const customSelectStyles = {
+    control: (base) => ({
+      ...base,
+      borderRadius: '8px',
+      borderColor: '#0056b3',
+      padding: '5px',
+      boxShadow: 'none',
+      '&:hover': { borderColor: '#0056b3' },
+      fontFamily: 'Raleway, sans-serif',
+      fontSize: '0.9rem',
+    }),
+    option: (base, state) => ({
+      ...base,
+      backgroundColor: state.isFocused ? '#0056b3' : 'white',
+      color: state.isFocused ? 'white' : 'black',
+      cursor: 'pointer',
+      fontFamily: 'Raleway, sans-serif',
+    }),
+  };
+
   const handleSignupClick = () => {
     navigate('/signup');
   };
@@ -39,18 +64,23 @@ export default function LoginPage() {
     e.preventDefault();
     setErrorMessage('');
 
-    const user = fakeUsersDB[email];
-
-    if (!user || user.password !== password || user.role !== selectedRole) {
-      setErrorMessage("Email, mot de passe ou rôle invalide");
+    if (!selectedRole) {
+      setErrorMessage("Veuillez sélectionner un poste.");
       return;
     }
 
-    const expectedCode = roleCodes[selectedRole];
+    const user = fakeUsersDB[email];
+
+    if (!user || user.password !== password || user.role !== selectedRole.value) {
+      setErrorMessage("Email, mot de passe ou rôle invalide.");
+      return;
+    }
+
+    const expectedCode = roleCodes[selectedRole.value];
 
     setPendingUserData({
       email,
-      role: selectedRole,
+      role: selectedRole.value,
       expectedCode,
     });
 
@@ -123,37 +153,27 @@ export default function LoginPage() {
 
             <div className="form-group">
               <label htmlFor="role" className="form-label">Sélectionner un poste</label>
-              <select
+              <Select
                 id="role"
-                className="form-input"
-                required
+                options={roleOptions}
+                styles={customSelectStyles}
+                placeholder="Sélectionner un poste"
                 value={selectedRole}
-                onChange={(e) => setSelectedRole(e.target.value)}
-              >
-                <option value="" disabled>Sélectionner un poste</option>
-                <option value="chef departement">Chef de département</option>
-                <option value="staff administrateur">Staff administratif</option>
-                <option value="enseignant">Enseignant</option>
-              </select>
+                onChange={setSelectedRole}
+                className="react-select-container"
+                classNamePrefix="react-select"
+              />
             </div>
 
             <div className="button-group">
-              <button type="submit" className="login-button blue-button">
-                Se connecter
-              </button>
-              <button type="button" className="signup-button" onClick={handleSignupClick}>
-                S'inscrire
-              </button>
+              <button type="submit" className="login-button blue-button">Se connecter</button>
+              <button type="button" className="signup-button" onClick={handleSignupClick}>S'inscrire</button>
             </div>
           </form>
         </div>
 
         <div className="login-right">
-          <img
-            src={illustration}
-            alt="Illustration de connexion"
-            className="login-image"
-          />
+          <img src={illustration} alt="Illustration de connexion" className="login-image" />
         </div>
       </motion.div>
 

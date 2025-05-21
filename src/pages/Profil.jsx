@@ -9,7 +9,6 @@ const Profil = () => {
 
   return (
     <div className="app-container">
-      {/* Utilisation de la SidebarTeacher */}
       <Sidebar />
 
       <main className="profile-form">
