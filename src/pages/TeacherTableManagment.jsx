@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import TeacherTable from '../components/TeacherTable';
 import Pagination from '../components/Pagination';
@@ -8,7 +8,12 @@ import './TeacherTableManagment.css';
 import PopupCommentaire from '../components/PopupCommentaire';
 
 const TeacherTableManagment = () => {
-  const [role, setRole] = useState('chef departement'); // Change for testing
+  const [role, setRole] = useState(''); // état initial vide
+
+  useEffect(() => {
+    const storedRole = localStorage.getItem('userRole') || '';
+    setRole(storedRole);
+  }, []);
 
   const [teachers, setTeachers] = useState([
     { nom: 'Sara Bouzid', specialite: 'Informatique', semestre: 'S3', module: 'Programmation web' },
@@ -25,7 +30,6 @@ const TeacherTableManagment = () => {
   const [showExportPopup, setShowExportPopup] = useState(false);
   const [showCommentPopup, setShowCommentPopup] = useState(false);
   const [commentText, setCommentText] = useState('');
-  
 
   const itemsPerPage = 3;
 

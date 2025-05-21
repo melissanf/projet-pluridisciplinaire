@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PageWrapper from '../components/PageWrapper';
 import Select from 'react-select';
@@ -11,22 +11,18 @@ import illustration from '../assets/Design sans titre (1).png';
 export default function Signup() {
   const navigate = useNavigate();
 
-  // États des champs
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [selectedRole, setSelectedRole] = useState(null);
-
-  // Popup confirmation
   const [showConfirmation, setShowConfirmation] = useState(false);
-
-  // Stockage temporaire des infos d'inscription en attente de confirmation du code
   const [pendingSignupData, setPendingSignupData] = useState(null);
 
-  // Code statique pour chef de département
-  useEffect(() => {
-    localStorage.setItem('codeChefDepartement', '1234');
-  }, []);
+  const roleCodes = {
+    'chef departement': '1234',
+    'staff administrateur': '1111',
+    'enseignant': '0000',
+  };
 
   const roleOptions = [
     { value: 'chef departement', label: 'Chef de département' },
@@ -71,19 +67,15 @@ export default function Signup() {
       return;
     }
 
-    if (selectedRole.value === 'chef departement') {
-      setPendingSignupData({
-        email,
-        role: selectedRole.value,
-      });
-      setShowConfirmation(true);
-      return;
-    }
+    const role = selectedRole.value;
+    const expectedCode = roleCodes[role];
 
-    // Inscription normale
-    localStorage.setItem('userRole', selectedRole.value);
-    localStorage.setItem('userEmail', email);
-    navigate('/modules');
+    setPendingSignupData({
+      email,
+      role,
+      expectedCode,
+    });
+    setShowConfirmation(true);
   };
 
   const handleCodeConfirmed = () => {
@@ -95,9 +87,8 @@ export default function Signup() {
     }
   };
 
-  // onFailure est optionnel, tu peux le laisser vide
   const handleCodeFailed = () => {
-    // Rien à faire ici si le message d'erreur est déjà géré dans le popup
+    // Optionnel : gestion en cas d'échec
   };
 
   return (
@@ -188,9 +179,10 @@ export default function Signup() {
         </div>
       </motion.div>
 
-      {showConfirmation && (
+      {showConfirmation && pendingSignupData && (
         <PopupConfirm
-          expectedCode={localStorage.getItem('codeChefDepartement')}
+          expectedCode={pendingSignupData.expectedCode}
+          role={pendingSignupData.role} // ✅ Ajout pour afficher le bon titre
           onSuccess={handleCodeConfirmed}
           onFailure={handleCodeFailed}
           onClose={() => setShowConfirmation(false)}
