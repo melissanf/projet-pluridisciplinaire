@@ -1,32 +1,30 @@
 import React, { useState, useEffect } from "react";
 
-const Popup = ({ data, onSave, onClose, isAdding }) => {
+const ModuleModal = ({ data, onSave, onClose, isAdding }) => {
   const [updatedData, setUpdatedData] = useState({ ...data });
   const [isFormValid, setIsFormValid] = useState(true);
 
   const formFields = [
-    { label: "Prénom", name: "prenom", type: "text" },
-    { label: "Nom", name: "nom", type: "text" },
-    { label: "Email", name: "email", type: "email" },
-    {
-      label: "Numéro de téléphone",
-      name: "telephone",
-      type: "tel",
-      pattern: "^[0-9]*$",
-    },
-    { label: "Grade", name: "grade", type: "text" },
+    { label: "Nom de module", name: "nomModule", type: "text" },
     { label: "Spécialité", name: "specialite", type: "text" },
-    { label: "Années d'expérience", name: "experience", type: "number" },
+    {
+      label: "Département",
+      name: "departement",
+      type: "dropdown",
+      options: [
+        "Département des Systèmes Informatiques (SIQ)",
+        "Département de AI/ Science des Données",
+      ],
+    },
+    {
+      label: "Enseignant responsable",
+      name: "enseignantResponsable",
+      type: "text",
+    },
   ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "telephone" && !/^\d*$/.test(value)) {
-      setIsFormValid(false);
-      setUpdatedData((prevData) => ({ ...prevData, [name]: "" }));
-      return;
-    }
-
     setUpdatedData({ ...updatedData, [name]: value });
   };
 
@@ -85,6 +83,12 @@ const Popup = ({ data, onSave, onClose, isAdding }) => {
       borderRadius: "4px",
       border: "1px solid #ccc",
     },
+    dropdown: {
+      width: "100%",
+      padding: "8px",
+      borderRadius: "4px",
+      border: "1px solid #ccc",
+    },
     inputError: {
       border: "1px solid red",
     },
@@ -117,22 +121,38 @@ const Popup = ({ data, onSave, onClose, isAdding }) => {
     <div style={styles.overlay}>
       <div style={styles.container}>
         <h3 style={styles.title}>
-          {isAdding ? "Ajouter un enseignant" : "Modifier l'enseignant"}
+          {isAdding ? "Ajouter un module" : "Modifier le module"}
         </h3>
         <form onSubmit={handleSubmit}>
           {formFields.map((field, index) => (
             <div key={index} style={styles.formField}>
               <label style={styles.label}>{field.label}:</label>
-              <input
-                type={field.type}
-                name={field.name}
-                value={updatedData[field.name] || ""}
-                onChange={handleChange}
-                style={{
-                  ...styles.input,
-                  ...(isFormValid ? {} : styles.inputError),
-                }}
-              />
+              {field.type === "dropdown" ? (
+                <select
+                  name={field.name}
+                  value={updatedData[field.name] || ""}
+                  onChange={handleChange}
+                  style={styles.dropdown}
+                >
+                  <option value="">Sélectionner</option>
+                  {field.options.map((option, idx) => (
+                    <option key={idx} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  type={field.type}
+                  name={field.name}
+                  value={updatedData[field.name] || ""}
+                  onChange={handleChange}
+                  style={{
+                    ...styles.input,
+                    ...(isFormValid ? {} : styles.inputError),
+                  }}
+                />
+              )}
             </div>
           ))}
           {!isFormValid && (
@@ -161,4 +181,4 @@ const Popup = ({ data, onSave, onClose, isAdding }) => {
   );
 };
 
-export default Popup;
+export default ModuleModal;

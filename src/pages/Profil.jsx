@@ -25,15 +25,25 @@ const Profil = () => {
           <div className="form-row">
             <select>
               <option>Sélectionnez un département</option>
+              <option>Département des Systèmes Informatiques (SIQ)</option>
+              <option>Département de AI/ Science des Données</option>
             </select>
             <select>
               <option>Sélectionnez un statut</option>
+              <option>Maître Assistant Classe B</option>
+              <option>Maître Assistant Classe A</option>
+              <option>Maître de Conférences Classe B</option>
+              <option>Maître de Conférences Classe A</option>
+              <option>
+                Professeur (ou Professeur de l’Enseignement Supérieur - PES)
+              </option>
             </select>
           </div>
           <input type="text" placeholder="Votre domaine de spécialité" />
           <textarea placeholder="Formation"></textarea>
-          <textarea placeholder="Expérience professionnelle"></textarea>
-          <button type="submit">Sauvegarder</button>
+          <button style={{ width: "fit-content", padding: "10px" }} type="submit">
+            Sauvegarder
+          </button>
         </form>
       </main>
     </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import ModuleTable from '../components/ModuleTable';
 import Pagination from '../components/Pagination';
-import Popup from '../components/Popup';
+import ModuleModal from '../components/ModuleModal';
 import ExportPopup from '../components/ExportPopup';
 import './ModuleManagement.css';
 import PopupCommentaire from '../components/PopupCommentaire'; // Import your PopupCommentaire component
@@ -161,7 +161,7 @@ const ModuleManagement = () => {
         />
 
         {selectedModule && (
-          <Popup
+          <ModuleModal
             module={selectedModule}
             onSave={handleSave}
             onClose={handleClosePopup}
