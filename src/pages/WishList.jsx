@@ -32,7 +32,7 @@ const TeachingTypeSelector = ({ selectedTypes = [], onChange }) => {
   );
 };
 
-const WishItem = ({ index, wish, onUpdate, onDelete }) => {
+const WishItem = ({ index, wish, onUpdate, onDelete, isExtra = false }) => {
   const handleModuleChange = (e) => {
     onUpdate(index, { ...wish, module: e.target.value });
   };
@@ -54,11 +54,11 @@ const WishItem = ({ index, wish, onUpdate, onDelete }) => {
   return (
     <div className="form-card">
       <div className="WishList-header">
-        <h3>Vœu {index + 1}</h3>
+        <h3>{isExtra ? 'Heures Supplémentaires' : `Vœu ${index + 1}`}</h3>
         <button className="delete-btn" onClick={handleDelete}>Supprimer</button>
       </div>
 
-{/* Champ pour le nom du module */}
+      {/* Champ pour le nom du module */}
       <div className="form-row">
         <div className="form-group">
           <label>Nom du module</label>
@@ -70,6 +70,7 @@ const WishItem = ({ index, wish, onUpdate, onDelete }) => {
           />
         </div>
       </div>
+
       {/* Champ pour le niveau */}
       <div className="form-row">
         <div className="form-group">
@@ -83,8 +84,6 @@ const WishItem = ({ index, wish, onUpdate, onDelete }) => {
         </div>
       </div>
 
-      
-
       {/* Sélection du type d’enseignement */}
       <TeachingTypeSelector
         selectedTypes={wish.teachingTypes}
@@ -96,6 +95,7 @@ const WishItem = ({ index, wish, onUpdate, onDelete }) => {
 
 function WishList() {
   const [wishList, setWishList] = useState([]);
+  const [extraWish, setExtraWish] = useState(null);
   const [saveMessage, setSaveMessage] = useState('');
   const navigate = useNavigate();
 
@@ -105,7 +105,7 @@ function WishList() {
 
   const addWish = () => {
     if (wishList.length >= 3) return;
-    setWishList([...wishList, {  module:'', niveau: '', teachingTypes: [] }]);
+    setWishList([...wishList, { module: '', niveau: '', teachingTypes: [] }]);
   };
 
   const updateWish = (index, updatedWish) => {
@@ -119,8 +119,19 @@ function WishList() {
     setWishList(newList);
   };
 
+  const addExtraWish = () => {
+    setExtraWish({ module: '', niveau: '', teachingTypes: [] });
+  };
+
+  const updateExtraWish = (_, updatedWish) => {
+    setExtraWish(updatedWish);
+  };
+
   const saveWishes = () => {
-    localStorage.setItem('voeux', JSON.stringify(wishList));
+    const allWishes = [...wishList];
+    if (extraWish) allWishes.push(extraWish);
+
+    localStorage.setItem('voeux', JSON.stringify(allWishes));
     setSaveMessage('✅ Vœux enregistrés avec succès !');
     setTimeout(() => setSaveMessage(''), 3000);
   };
@@ -145,6 +156,16 @@ function WishList() {
         />
       ))}
 
+      {extraWish && (
+        <WishItem
+          index={3}
+          wish={extraWish}
+          onUpdate={updateExtraWish}
+          onDelete={() => setExtraWish(null)}
+          isExtra={true}
+        />
+      )}
+
       <div className="buttons-container">
         {wishList.length < 3 && (
           <button className="add-button" onClick={addWish}>+ Nouveau vœu</button>
@@ -153,6 +174,12 @@ function WishList() {
         {wishList.length > 0 && (
           <button className="save-button" onClick={saveWishes}>
             💾 Enregistrer les vœux
+          </button>
+        )}
+
+        {wishList.length === 3 && !extraWish && (
+          <button className="extra-button" onClick={addExtraWish}>
+            ➕ Heures supplémentaires
           </button>
         )}
       </div>

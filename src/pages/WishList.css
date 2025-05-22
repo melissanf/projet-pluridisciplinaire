@@ -185,3 +185,20 @@
   margin-top: 10px;
   font-weight: bold;
 }
+/* Bouton Heures Supplémentaires */
+.extra-button {
+  flex: 1;
+  background-color: #ffc107; /* jaune */
+  color: #212529;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.extra-button:hover {
+  background-color: #e0a800;
+}
